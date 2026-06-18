@@ -1,0 +1,16 @@
+{
+  "name": "Decompose Return And Hedge",
+  "summary": "Explain a stock's return with factor decomposition, loadings, and hedge ideas.",
+  "description": "Use when the user asks why a stock moved, what drove a return period, or how to hedge the position.",
+  "status": "active",
+  "tags": ["returns", "decomposition", "hedging", "factors", "security"],
+  "triggers": ["decompose return", "why did this stock move", "hedge this position", "return drivers"],
+  "requiredEndpoints": [
+    "GET /v1/factors/decomposition",
+    "GET /v1/stocks/{ticker}/loadings",
+    "GET /v1/intelligence/security",
+    "POST /v1/intelligence/query"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

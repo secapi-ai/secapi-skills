@@ -1,0 +1,22 @@
+{
+  "name": "Company Due Diligence",
+  "summary": "Full company due-diligence workflow: Overview, Segments, financials, factors, ownership, filing sections, and dilution, output as a cited DD memo with filing provenance.",
+  "description": "Use when the user asks for a deep dive, pre-investment due-diligence pack, or full company workup with citations.",
+  "status": "active",
+  "tags": ["due-diligence", "company", "ownership", "filings", "factors", "dilution", "provenance"],
+  "triggers": ["due diligence", "deep dive", "company workup", "pre-investment pack", "full company analysis", "DD memo"],
+  "requiredEndpoints": [
+    "GET /v1/entities/resolve",
+    "GET /v1/companies/overview",
+    "GET /v1/companies/segments",
+    "GET /v1/intelligence/company",
+    "GET /v1/factors/exposures",
+    "GET /v1/factors/decomposition",
+    "GET /v1/insiders",
+    "GET /v1/owners/institutional/ticker",
+    "POST /v1/intelligence/query",
+    "GET /v1/dilution/score"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

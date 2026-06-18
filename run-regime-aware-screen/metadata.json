@@ -1,0 +1,16 @@
+{
+  "name": "Run Regime Aware Screen",
+  "summary": "Screen factors and candidates against the active macro regime and rotation backdrop.",
+  "description": "Use when the user asks for tightening-cycle screens, regime-aware factor picks, or factor rotation ideas.",
+  "status": "active",
+  "tags": ["macro", "regime", "screening", "rotation", "factors"],
+  "triggers": ["regime screen", "tightening cycle", "factor rotation", "macro regime"],
+  "requiredEndpoints": [
+    "POST /v1/strategies/regime-screen",
+    "POST /v1/strategies/factor-rotation",
+    "GET /v1/macro/regimes",
+    "GET /v1/factors/screen"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

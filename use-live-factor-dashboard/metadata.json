@@ -1,0 +1,16 @@
+{
+  "name": "Use Live Factor Dashboard",
+  "summary": "Power a live factor dashboard with intraday returns, stock loadings, and model-portfolio drill-down.",
+  "description": "Use when the user asks for live factor monitoring, intraday factor anomalies, or dashboard-style factor views.",
+  "status": "active",
+  "tags": ["dashboard", "intraday", "factors", "live", "portfolio"],
+  "triggers": ["live factor dashboard", "intraday factor returns", "factor monitor", "factor leaderboard live"],
+  "requiredEndpoints": [
+    "GET /v1/factors/returns/intraday",
+    "GET /v1/stocks/{ticker}/loadings",
+    "GET /v1/model-portfolios/{id}/factor-view",
+    "GET /v1/factors/correlations"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Make Portfolio Factor Neutral",
+  "summary": "Analyze portfolio exposures, generate neutralization plans, and validate them with stress scenarios.",
+  "description": "Use when the user asks to neutralize a portfolio, reduce factor concentration, or hedge a portfolio at the allocator level.",
+  "status": "active",
+  "tags": ["portfolio", "hedge", "optimization", "factor-neutral", "stress-test"],
+  "triggers": ["factor neutral", "hedge my portfolio", "portfolio exposures", "portfolio optimization"],
+  "requiredEndpoints": [
+    "POST /v1/portfolio/analyze",
+    "POST /v1/portfolio/optimize",
+    "POST /v1/portfolio/stress-test",
+    "GET /v1/model-portfolios/{id}/factor-view"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

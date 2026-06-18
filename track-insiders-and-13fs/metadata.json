@@ -1,0 +1,17 @@
+{
+  "name": "Track Insiders And 13Fs",
+  "summary": "Analyze insider activity and institutional ownership changes, including manager style drift.",
+  "description": "Use when the user asks about insider trades, 13F changes, institutional holders, or style drift for one manager.",
+  "status": "active",
+  "tags": ["insiders", "13f", "ownership", "institutional", "manager"],
+  "triggers": ["insider buying", "insider selling", "13f changes", "style drift", "institutional holders"],
+  "requiredEndpoints": [
+    "GET /v1/insiders",
+    "GET /v1/owners/13f",
+    "GET /v1/owners/13f/filings",
+    "POST /v1/owners/13f/compare",
+    "POST /v1/intelligence/query"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Investigate Filing Footnotes",
+  "summary": "Use the semantic planner and intelligence bundles to investigate filing footnotes and accounting-risk areas.",
+  "description": "Use when the user asks about lease, tax, revenue-recognition, debt covenant, or segment-note analysis.",
+  "status": "active",
+  "tags": ["footnotes", "filings", "accounting", "semantic-query", "risk"],
+  "triggers": ["footnotes", "lease note", "tax footnote", "revenue recognition", "segment note", "debt covenant"],
+  "requiredEndpoints": [
+    "POST /v1/intelligence/query",
+    "GET /v1/intelligence/company",
+    "GET /v1/intelligence/security"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

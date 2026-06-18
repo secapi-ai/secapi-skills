@@ -1,0 +1,16 @@
+{
+  "name": "Write Country Regime Report",
+  "summary": "Build allocator-style country reports from the high-signal pack, macro regime state, and country-report endpoint.",
+  "description": "Use when the user asks for a country macro report, macro regime memo, or 12-18 month outlook for one economy.",
+  "status": "active",
+  "tags": ["macro", "country-report", "regime", "official-data"],
+  "triggers": ["country report", "macro report", "japan economy", "china outlook", "macro regime report"],
+  "requiredEndpoints": [
+    "GET /v1/macro/high-signal-pack",
+    "GET /v1/macro/regimes",
+    "POST /v1/intelligence/country-report",
+    "POST /v1/intelligence/query"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}
