@@ -1,0 +1,18 @@
+{
+  "name": "Monitor Special Situations",
+  "summary": "Build repeatable watch workflows for special situations using event feed, calendar, rosters, stats, and performance.",
+  "description": "Use when the user asks to monitor deal activity, watch a ticker/type/form, track upcoming votes or tender expiries, or create a recurring situation watchlist.",
+  "status": "active",
+  "tags": ["situations", "monitoring", "watchlist", "calendar", "feed", "alerts", "deal-flow"],
+  "triggers": ["monitor situations", "watch deals", "deal watchlist", "upcoming votes", "tender expiries", "expected close dates", "situation calendar", "daily deal flow"],
+  "requiredEndpoints": [
+    "GET /v1/situations/feed",
+    "GET /v1/situations/calendar",
+    "GET /v1/situations",
+    "GET /v1/situations/stats",
+    "GET /v1/situations/performance",
+    "GET /v1/situations/{situation_id}"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

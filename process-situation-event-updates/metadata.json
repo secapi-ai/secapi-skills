@@ -1,0 +1,17 @@
+{
+  "name": "Process Situation Event Updates",
+  "summary": "Process situation updates by reading the event feed, hydrating changed situations, comparing lifecycle and key-date changes, and producing cited update briefs.",
+  "description": "Use when the user asks what changed in a deal, how to update a watchlist, or how to summarize new filings against existing situation state.",
+  "status": "active",
+  "tags": ["situations", "event-updates", "feed", "timeline", "watchlist", "status-change", "sec-filings"],
+  "triggers": ["what changed", "situation update", "deal update", "new filing update", "status change", "watchlist update", "process situation events", "timeline delta"],
+  "requiredEndpoints": [
+    "GET /v1/situations/feed",
+    "GET /v1/situations/{situation_id}",
+    "GET /v1/situations/{situation_id}/filings",
+    "GET /v1/situations/{situation_id}/summary",
+    "GET /v1/situations/calendar"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

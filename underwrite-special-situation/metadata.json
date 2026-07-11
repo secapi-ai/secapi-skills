@@ -1,0 +1,17 @@
+{
+  "name": "Underwrite Special Situation",
+  "summary": "Underwrite one SEC-derived special situation using its summary, full timeline, key dates, lifecycle status, and source filings.",
+  "description": "Use when the user gives a situation ID or asks for a deal memo, probability tree, catalyst map, spread-risk review, or single-situation workup.",
+  "status": "active",
+  "tags": ["situations", "underwriting", "deal-memo", "merger-arb", "timeline", "sec-filings", "provenance"],
+  "triggers": ["underwrite situation", "deal memo", "probability tree", "spread risk", "break price", "single situation", "situation timeline", "catalyst map"],
+  "requiredEndpoints": [
+    "GET /v1/situations/{situation_id}",
+    "GET /v1/situations/{situation_id}/summary",
+    "GET /v1/situations/{situation_id}/filings",
+    "GET /v1/situations/performance",
+    "GET /v1/situations/feed"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}

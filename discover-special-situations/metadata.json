@@ -1,0 +1,17 @@
+{
+  "name": "Discover Special Situations",
+  "summary": "Find SEC-derived special situations by type, status, ticker, form trigger, sector, market cap, geography, and recent event flow.",
+  "description": "Use when the user asks for live deal discovery, merger-arb candidates, activist campaigns, tender offers, spin-offs, restructurings, or situations opened by a specific EDGAR form.",
+  "status": "active",
+  "tags": ["situations", "discovery", "merger-arb", "tender-offer", "spin-off", "activist", "restructuring", "sec-filings"],
+  "triggers": ["special situations", "deal discovery", "merger arbitrage candidates", "tender offers", "activist campaigns", "spin-offs", "restructurings", "situations by form", "SC 13D", "DEFM14A"],
+  "requiredEndpoints": [
+    "GET /v1/situations",
+    "GET /v1/situations/by-form/{form}",
+    "GET /v1/situations/feed",
+    "GET /v1/situations/stats",
+    "GET /v1/situations/performance"
+  ],
+  "tier": "core",
+  "schemaVersion": 1
+}
