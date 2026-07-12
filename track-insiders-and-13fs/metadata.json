@@ -1,7 +1,7 @@
 {
   "name": "Track Insiders And 13Fs",
-  "summary": "Analyze insider activity and institutional ownership changes, including manager style drift.",
-  "description": "Use when the user asks about insider trades, 13F changes, institutional holders, or style drift for one manager.",
+  "summary": "Analyze Form 3, 4, and 5 insider activity, then compare a manager's 13F holdings across reporting periods.",
+  "description": "Use for company insider activity or a specific manager's 13F holdings, filing history, and style drift.",
   "status": "active",
   "tags": ["insiders", "13f", "ownership", "institutional", "manager"],
   "triggers": ["insider buying", "insider selling", "13f changes", "style drift", "institutional holders"],

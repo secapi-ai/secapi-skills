@@ -1,7 +1,7 @@
 {
   "name": "Make Portfolio Factor Neutral",
-  "summary": "Analyze portfolio exposures, generate neutralization plans, and validate them with stress scenarios.",
-  "description": "Use when the user asks to neutralize a portfolio, reduce factor concentration, or hedge a portfolio at the allocator level.",
+  "summary": "Analyze portfolio factor exposures, optimize toward neutrality, and validate proposed changes with stress tests.",
+  "description": "Use to neutralize portfolio factor exposure, reduce concentration, or evaluate a portfolio hedge.",
   "status": "active",
   "tags": ["portfolio", "hedge", "optimization", "factor-neutral", "stress-test"],
   "triggers": ["factor neutral", "hedge my portfolio", "portfolio exposures", "portfolio optimization"],

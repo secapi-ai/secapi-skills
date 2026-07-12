@@ -1,7 +1,7 @@
 {
   "name": "Decompose Return And Hedge",
-  "summary": "Explain a stock's return with factor decomposition, loadings, and hedge ideas.",
-  "description": "Use when the user asks why a stock moved, what drove a return period, or how to hedge the position.",
+  "summary": "Attribute a security return with factor decomposition and loadings, then evaluate hedge candidates.",
+  "description": "Use to explain a security's return over a stated period or evaluate hedge candidates.",
   "status": "active",
   "tags": ["returns", "decomposition", "hedging", "factors", "security"],
   "triggers": ["decompose return", "why did this stock move", "hedge this position", "return drivers"],

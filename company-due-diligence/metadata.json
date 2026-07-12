@@ -1,7 +1,7 @@
 {
   "name": "Company Due Diligence",
-  "summary": "Full company due-diligence workflow: Overview, Segments, financials, factors, ownership, filing sections, and dilution, output as a cited DD memo with filing provenance.",
-  "description": "Use when the user asks for a deep dive, pre-investment due-diligence pack, or full company workup with citations.",
+  "summary": "Produce a cited company due-diligence memo from issuer data, segments, factors, ownership, filing sections, and dilution signals.",
+  "description": "Use for a deep dive, pre-investment due-diligence pack, or full company workup with filing citations.",
   "status": "active",
   "tags": ["due-diligence", "company", "ownership", "filings", "factors", "dilution", "provenance"],
   "triggers": ["due diligence", "deep dive", "company workup", "pre-investment pack", "full company analysis", "DD memo"],
