@@ -1,7 +1,7 @@
 {
   "name": "Run Regime Aware Screen",
-  "summary": "Screen factors and candidates against the active macro regime and rotation backdrop.",
-  "description": "Use when the user asks for tightening-cycle screens, regime-aware factor picks, or factor rotation ideas.",
+  "summary": "Screen factors and candidates against the current macro regime, then compare factor rotation leaders and laggards.",
+  "description": "Use for factor screens or rotation analysis tied to a stated macro regime, including tightening cycles.",
   "status": "active",
   "tags": ["macro", "regime", "screening", "rotation", "factors"],
   "triggers": ["regime screen", "tightening cycle", "factor rotation", "macro regime"],

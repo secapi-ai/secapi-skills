@@ -1,76 +1,69 @@
 # SEC API Skills
 
-Installable workflow skills for Claude Code, Codex, and Cowork. Each skill teaches your AI agent how to use SEC API endpoints for specific financial analysis workflows.
+Install these skills in an agent that can call the [SEC API](https://docs.secapi.ai). They give the agent named, repeatable workflows for company due diligence, filing-footnote review, ownership analysis, factor work, and macro research. The skills direct the agent to the relevant SEC API routes and require source details when the workflow returns filing-derived claims.
 
-## Authentication
+## Install
 
-Use `x-api-key: <key>` on every request.
+The [Skills CLI](https://www.skills.sh/docs/cli) installs this public GitHub repository into supported agent environments. It runs through `npx` and does not require adding an application dependency. The legacy `@secapi/skills` npm package remains published, but this repository is the recommended installation surface.
 
-## Base URL
+Install every skill globally for your local agent tools:
 
-```text
-https://api.secapi.ai/v1
+```bash
+npx skills add https://github.com/secapi-ai/secapi-skills --global --all
 ```
 
-## Required Environment Variables
+Install one skill globally:
+
+```bash
+npx skills add https://github.com/secapi-ai/secapi-skills --global --skill company-due-diligence
+```
+
+Install one skill for the current project instead of your user-level agent configuration:
+
+```bash
+npx skills add https://github.com/secapi-ai/secapi-skills --skill company-due-diligence
+```
+
+To target particular agent integrations, pass `--agent` with the agent name accepted by your installed Skills CLI. Run `npx skills --help` to see the available options and `npx skills list` to inspect project-installed skills.
+
+## Give The Agent API Access
+
+Create an API key in [SEC API](https://secapi.ai), then provide it to the runtime that executes your agent:
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Install a Skill
+The workflows call `https://api.secapi.ai/v1` and send the key as `x-api-key`. Keep the key in the agent runtime or its secret manager; do not put it in a prompt, a repository, or client-side code. See the [API reference](https://docs.secapi.ai) for route contracts and response fields.
 
-From the published package (recommended):
+## Use A Skill
 
-```bash
-# Install all skills across Claude Code, Cursor, Codex, and ~70 other agents
-npx skills add secapi-ai/secapi-skills --global
+After installation, ask the agent for the analysis you need. The skill's trigger and workflow guide it toward the applicable SEC API calls. For example:
 
-# Or a single skill
-npx skills add secapi-ai/secapi-skills --global --skill company-due-diligence
-
-# Or via npm for programmatic access
-npm install @secapi/skills
+```text
+Run full due diligence on NVDA. Cite every filing-derived claim with its accession number, filing URL, and item or page.
 ```
 
-From a local checkout of this repo:
-
-```bash
-# Claude Code
-claude skill install ./skills/<skill-name>
-
-# Codex
-codex skill add ./skills/<skill-name>
-
-# Cowork
-cowork skill install ./skills/<skill-name>
-```
+Each skill is a directory containing a `SKILL.md` workflow and a `metadata.json` record with its triggers and required endpoints. Review the workflow before production use, especially its required inputs, lookback periods, and provenance requirements.
 
 ## Available Skills
 
-| Skill | Description | Install |
-|-------|-------------|---------|
-| [company-due-diligence](./company-due-diligence/) | Run a full DD workup — Overview, Segments, financials, factors, ownership, filing sections, and dilution — as a cited memo with filing provenance | `claude skill install ./skills/company-due-diligence` |
-| [analyze-company-in-context](./analyze-company-in-context/) | Build issuer and security context packs with Company Overview, Segments, intelligence bundles, plus factor and macro overlays | `claude skill install ./skills/analyze-company-in-context` |
-| [decompose-return-and-hedge](./decompose-return-and-hedge/) | Explain a stock's return with factor decomposition, loadings, and hedge ideas | `claude skill install ./skills/decompose-return-and-hedge` |
-| [track-insiders-and-13fs](./track-insiders-and-13fs/) | Analyze insider activity and institutional ownership changes, including manager style drift | `claude skill install ./skills/track-insiders-and-13fs` |
-| [investigate-filing-footnotes](./investigate-filing-footnotes/) | Use the semantic planner and intelligence bundles to investigate filing footnotes and accounting-risk areas | `claude skill install ./skills/investigate-filing-footnotes` |
-| [make-portfolio-factor-neutral](./make-portfolio-factor-neutral/) | Analyze portfolio exposures, generate neutralization plans, and validate with stress scenarios | `claude skill install ./skills/make-portfolio-factor-neutral` |
-| [run-regime-aware-screen](./run-regime-aware-screen/) | Screen factors and candidates against the active macro regime and rotation backdrop | `claude skill install ./skills/run-regime-aware-screen` |
-| [write-country-regime-report](./write-country-regime-report/) | Build allocator-style country reports from high-signal packs, macro regime state, and official data | `claude skill install ./skills/write-country-regime-report` |
-| [use-live-factor-dashboard](./use-live-factor-dashboard/) | Power a live factor dashboard with intraday returns, stock loadings, and model-portfolio drill-down | `claude skill install ./skills/use-live-factor-dashboard` |
+| Skill | Use it for | Workflow |
+| --- | --- | --- |
+| Company Due Diligence | A cited company workup spanning issuer data, segments, factors, ownership, filings, and dilution. | [Read](./company-due-diligence/SKILL.md) |
+| Analyze Company In Context | An issuer or security briefing with intelligence, factor, macro, and earnings context. | [Read](./analyze-company-in-context/SKILL.md) |
+| Decompose Return And Hedge | Return attribution, factor loadings, and hedge candidates for a security. | [Read](./decompose-return-and-hedge/SKILL.md) |
+| Track Insiders And 13Fs | Insider transactions and a manager's 13F holdings or period-over-period changes. | [Read](./track-insiders-and-13fs/SKILL.md) |
+| Investigate Filing Footnotes | Filing-note research across leases, tax, revenue recognition, debt covenants, and segments. | [Read](./investigate-filing-footnotes/SKILL.md) |
+| Make Portfolio Factor Neutral | Portfolio exposure analysis, factor-neutral optimization, and stress testing. | [Read](./make-portfolio-factor-neutral/SKILL.md) |
+| Run Regime Aware Screen | Factor screens and rotation analysis under a stated macro regime. | [Read](./run-regime-aware-screen/SKILL.md) |
+| Write Country Regime Report | A country macro report using the high-signal pack, regime state, and country-report routes. | [Read](./write-country-regime-report/SKILL.md) |
+| Use Live Factor Dashboard | Intraday factor returns, security loadings, correlations, and model-portfolio views. | [Read](./use-live-factor-dashboard/SKILL.md) |
 
-## Skill Structure
+## Source And Updates
 
-Each skill contains:
-
-- `SKILL.md` — Workflow guidance, example requests, and endpoint reference
-- `metadata.json` — Triggers, tags, required endpoints, and schema version
-- `install.md` — One-command install instructions and quick-start example
-
-## List Skills
+This repository is the source for the skill files: [github.com/secapi-ai/secapi-skills](https://github.com/secapi-ai/secapi-skills). Update installed skills with the Skills CLI when you want the latest repository version:
 
 ```bash
-bun run skills:list
+npx skills update
 ```
