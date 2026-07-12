@@ -4,7 +4,7 @@ Install these skills in an agent that can call the [SEC API](https://docs.secapi
 
 ## Install
 
-The [Skills CLI](https://www.skills.sh/docs/cli) installs this public GitHub repository into supported agent environments. It runs through `npx`; there is no package to add to your application.
+The [Skills CLI](https://www.skills.sh/docs/cli) installs this public GitHub repository into supported agent environments. It runs through `npx` and does not require adding an application dependency. The legacy `@secapi/skills` npm package remains published, but this repository is the recommended installation surface.
 
 Install every skill globally for your local agent tools:
 
