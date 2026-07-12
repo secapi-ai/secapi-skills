@@ -9,7 +9,7 @@
     "POST /v1/portfolio/analyze",
     "POST /v1/portfolio/optimize",
     "POST /v1/portfolio/stress-test",
-    "GET /v1/model-portfolios/{id}/factor-view"
+    "GET /v1/model-portfolios/{portfolioId}/factor-view"
   ],
   "tier": "core",
   "schemaVersion": 1

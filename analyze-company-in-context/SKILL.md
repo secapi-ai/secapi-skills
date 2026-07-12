@@ -3,7 +3,7 @@ name: analyze-company-in-context
 description: Builds a company or security view using SEC API intelligence bundles, macro overlays, factor exposures, and earnings context. Use when the user asks for a company briefing, security overview, or allocator-style company summary.
 ---
 
-# Analyze Company In Context
+# Analyze Company in Context
 
 ## Quick Start
 
@@ -18,7 +18,6 @@ curl -s "https://api.secapi.ai/v1/companies/overview?ticker=MSFT&include=segment
 
 - `GET /v1/companies/overview?ticker=...&include=segments,footnotes,dilution` — issuer identity, latest material filing, and a 5-year financial snapshot in one call
 - `GET /v1/companies/segments?ticker=...&segment_type=product|geographic|operating` — revenue / operating-income broken out by reportable segment and geography
-- `GET /v1/intelligence/company?ticker=...`
 - `GET /v1/intelligence/security?ticker=...`
 - `GET /v1/intelligence/earnings-preview?ticker=...`
 - `GET /v1/factors/exposures?symbols=...`
@@ -28,7 +27,7 @@ curl -s "https://api.secapi.ai/v1/companies/overview?ticker=MSFT&include=segment
 
 1. Start with `companies/overview` (it accepts `ticker` or `cik`) and capture the canonical `cik`. If you only have a company name, resolve it first with `GET /v1/entities/resolve?name=...`. Add `?include=segments,dilution` for an inline summary.
 2. Pull `companies/segments` for the full multi-axis business breakdown when the question is about revenue mix, concentration, or geographic exposure.
-3. Use the `intelligence/company` bundle for deeper issuer context, and `intelligence/security` when the question is about trading, return drivers, or hedge candidates.
+3. Use `companies/overview` for issuer context, and `intelligence/security` when the question is about trading, return drivers, or hedge candidates.
 4. Add `intelligence/earnings-preview` when the question is near a reporting window.
 5. Pull factor exposures and macro regimes only if they change the answer.
 6. Return a compact summary before showing supporting data.

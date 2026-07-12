@@ -1,22 +1,23 @@
-# Install: Run Regime Aware Screen
+# Install: Run Regime-Aware Screen
 
 ## One-Command Install
 
 ```bash
 # Claude Code
-claude skill install ./skills/run-regime-aware-screen
+claude skill install ./run-regime-aware-screen
 
 # Codex
-codex skill add ./skills/run-regime-aware-screen
+codex skill add ./run-regime-aware-screen
 
 # Cowork
-cowork skill install ./skills/run-regime-aware-screen
+cowork skill install ./run-regime-aware-screen
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Run a regime-aware factor screen
-curl -s https://api.secapi.ai/v1/strategies/regime-screen \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/strategies/regime-screen" \
   -H "x-api-key: $SECAPI_API_KEY" \
   -H "content-type: application/json" \
   -d '{"country":"US","lookback":"6m","category":"style"}'

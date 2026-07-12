@@ -4,19 +4,20 @@
 
 ```bash
 # Claude Code
-claude skill install ./skills/investigate-filing-footnotes
+claude skill install ./investigate-filing-footnotes
 
 # Codex
-codex skill add ./skills/investigate-filing-footnotes
+codex skill add ./investigate-filing-footnotes
 
 # Cowork
-cowork skill install ./skills/investigate-filing-footnotes
+cowork skill install ./investigate-filing-footnotes
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Investigate footnotes for a company
-curl -s https://api.secapi.ai/v1/intelligence/query \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/intelligence/query" \
   -H "x-api-key: $SECAPI_API_KEY" \
   -H "content-type: application/json" \
   -d '{"query":"Investigate the lease, tax, and revenue-recognition footnotes for CRM."}'

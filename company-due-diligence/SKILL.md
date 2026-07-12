@@ -20,7 +20,6 @@ curl -s "https://api.secapi.ai/v1/companies/overview?ticker=NVDA&include=segment
 - `GET  /v1/entities/resolve?name=...` — resolve a company name (or ticker/cik/cusip/isin/figi) to the canonical entity. Only needed when you don't already have a ticker or CIK.
 - `GET  /v1/companies/overview?ticker=...&include=segments,footnotes,dilution` — issuer identity, latest material filing, 5-year financial snapshot
 - `GET  /v1/companies/segments?ticker=...&segment_type=product|geographic|operating` — revenue / operating-income by reportable segment and geography
-- `GET  /v1/intelligence/company?ticker=...` — issuer intelligence bundle
 - `GET  /v1/intelligence/earnings-preview?ticker=...` — near-reporting context
 - `GET  /v1/factors/exposures?symbols=...` — factor exposures
 - `GET  /v1/factors/decomposition?symbol=...` — return / factor decomposition
@@ -38,8 +37,8 @@ curl -s "https://api.secapi.ai/v1/companies/overview?ticker=NVDA&include=segment
 2. **Overview + Segments.** Read `companies/overview` (business description,
    sector, size, financial snapshot) and `companies/segments` (revenue and
    operating income by reportable segment and geography). This frames the memo.
-3. **Financials & ratios.** Use the `intelligence/company` bundle for the
-   financial summary and ratios; add `intelligence/earnings-preview` near a
+3. **Financials & ratios.** Use `companies/overview` for the financial summary
+   and ratios; add `intelligence/earnings-preview` near a
    reporting window.
 4. **Factors.** Pull `factors/exposures` for the symbol, then
    `factors/decomposition` to attribute recent return to factor vs idiosyncratic.

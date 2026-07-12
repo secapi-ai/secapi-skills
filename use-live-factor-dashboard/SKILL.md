@@ -8,7 +8,7 @@ description: Uses SEC API intraday factor returns, stock loadings, and model-por
 ## Quick Start
 
 ```bash
-curl -s "https://api.secapi.ai/v1/factors/returns/intraday?window=5m" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/returns/intraday" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
@@ -16,7 +16,7 @@ curl -s "https://api.secapi.ai/v1/factors/returns/intraday?window=5m" \
 
 - `GET /v1/factors/returns/intraday`
 - `GET /v1/stocks/{ticker}/loadings`
-- `GET /v1/model-portfolios/{id}/factor-view`
+- `GET /v1/model-portfolios/{portfolioId}/factor-view`
 - `GET /v1/factors/correlations`
 
 ## Process
@@ -28,16 +28,15 @@ curl -s "https://api.secapi.ai/v1/factors/returns/intraday?window=5m" \
 
 ## Dashboard Notes
 
-- Prefer `window=1m` or `window=5m` for live tiles.
 - Show z-scores and leverage when present.
 - Use stock loadings diagnostics to explain why a position is sensitive to a factor move.
 
 ## Example
 
-Question: `What factors are moving most in the last 5 minutes, and why is NVDA sensitive?`
+Question: `What factors are moving now, and why is NVDA sensitive?`
 
 Suggested sequence:
-- `GET /v1/factors/returns/intraday?window=5m` for the live leaderboard
+- `GET /v1/factors/returns/intraday` for the live leaderboard
 - `GET /v1/stocks/NVDA/loadings` to explain the position's factor sensitivity
 
 ## Guidelines

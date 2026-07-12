@@ -8,7 +8,7 @@
   "requiredEndpoints": [
     "GET /v1/factors/returns/intraday",
     "GET /v1/stocks/{ticker}/loadings",
-    "GET /v1/model-portfolios/{id}/factor-view",
+    "GET /v1/model-portfolios/{portfolioId}/factor-view",
     "GET /v1/factors/correlations"
   ],
   "tier": "core",

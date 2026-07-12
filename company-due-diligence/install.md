@@ -4,19 +4,20 @@
 
 ```bash
 # Claude Code
-claude skill install ./skills/company-due-diligence
+claude skill install ./company-due-diligence
 
 # Codex
-codex skill add ./skills/company-due-diligence
+codex skill add ./company-due-diligence
 
 # Cowork
-cowork skill install ./skills/company-due-diligence
+cowork skill install ./company-due-diligence
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Resolve the issuer + snapshot in one call
-curl -s "https://api.secapi.ai/v1/companies/overview?ticker=NVDA&include=segments,dilution" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/companies/overview?ticker=NVDA&include=segments,dilution" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 

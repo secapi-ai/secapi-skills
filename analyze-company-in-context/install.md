@@ -1,30 +1,31 @@
-# Install: Analyze Company In Context
+# Install: Analyze Company in Context
 
 ## One-Command Install
 
 ```bash
 # Claude Code
-claude skill install ./skills/analyze-company-in-context
+claude skill install ./analyze-company-in-context
 
 # Codex
-codex skill add ./skills/analyze-company-in-context
+codex skill add ./analyze-company-in-context
 
 # Cowork
-cowork skill install ./skills/analyze-company-in-context
+cowork skill install ./analyze-company-in-context
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
 ## Quick Start
 
 ```bash
-# Get a company intelligence bundle
-curl -s "https://api.secapi.ai/v1/intelligence/company?ticker=MSFT" \
+# Get a company overview by ticker
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/companies/overview?ticker=MSFT" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
