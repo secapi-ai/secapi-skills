@@ -1,22 +1,23 @@
-# Install: Track Insiders And 13Fs
+# Install: Track Insiders and 13Fs
 
 ## One-Command Install
 
 ```bash
 # Claude Code
-claude skill install ./skills/track-insiders-and-13fs
+claude skill install ./track-insiders-and-13fs
 
 # Codex
-codex skill add ./skills/track-insiders-and-13fs
+codex skill add ./track-insiders-and-13fs
 
 # Cowork
-cowork skill install ./skills/track-insiders-and-13fs
+cowork skill install ./track-insiders-and-13fs
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Get insider activity for a ticker
-curl -s "https://api.secapi.ai/v1/insiders?ticker=NVDA" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/insiders?ticker=NVDA" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 

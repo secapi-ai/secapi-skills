@@ -8,7 +8,7 @@ description: Uses portfolio factor analysis, optimization, and stress testing to
 ## Quick Start
 
 ```bash
-curl -s https://api.secapi.ai/v1/portfolio/analyze \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/portfolio/analyze" \
   -H "x-api-key: $SECAPI_API_KEY" \
   -H "content-type: application/json" \
   -d '{"country":"US","lookback":"6m","holdings":[{"symbol":"AAPL","weight":0.5},{"symbol":"MSFT","weight":0.5}]}'
@@ -19,14 +19,14 @@ curl -s https://api.secapi.ai/v1/portfolio/analyze \
 - `POST /v1/portfolio/analyze`
 - `POST /v1/portfolio/optimize`
 - `POST /v1/portfolio/stress-test`
-- `GET /v1/model-portfolios/{id}/factor-view`
+- `GET /v1/model-portfolios/{portfolioId}/factor-view`
 
 ## Process
 
 1. Run `portfolio/analyze` to identify top absolute exposures.
 2. Run `portfolio/optimize` with `objective=factor_neutral`.
 3. Validate the proposed hedge basket with `portfolio/stress-test`.
-4. For canned examples or dashboards, use `model-portfolios/{id}/factor-view`.
+4. For canned examples or dashboards, use `model-portfolios/{portfolioId}/factor-view`.
 
 ## Example
 

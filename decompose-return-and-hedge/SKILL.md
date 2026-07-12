@@ -3,18 +3,18 @@ name: decompose-return-and-hedge
 description: Breaks down a security return into factor and macro context, then proposes hedge candidates. Use when the user asks why a stock moved, what drove a return period, or how to hedge the position.
 ---
 
-# Decompose Return And Hedge
+# Decompose Return and Hedge
 
 ## Quick Start
 
 ```bash
-curl -s "https://api.secapi.ai/v1/factors/decomposition?ticker=AAPL&lookback=6m" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/decomposition?symbol=AAPL&lookback=6m" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
 ## Endpoints
 
-- `GET /v1/factors/decomposition?ticker=...`
+- `GET /v1/factors/decomposition?symbol=...`
 - `GET /v1/stocks/{ticker}/loadings`
 - `GET /v1/intelligence/security?ticker=...`
 - `POST /v1/intelligence/query`

@@ -4,19 +4,20 @@
 
 ```bash
 # Claude Code
-claude skill install ./skills/write-country-regime-report
+claude skill install ./write-country-regime-report
 
 # Codex
-codex skill add ./skills/write-country-regime-report
+codex skill add ./write-country-regime-report
 
 # Cowork
-cowork skill install ./skills/write-country-regime-report
+cowork skill install ./write-country-regime-report
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Fetch the Japan high-signal macro pack
-curl -s "https://api.secapi.ai/v1/macro/high-signal-pack?country=JP" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/macro/high-signal-pack?country=JP" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 

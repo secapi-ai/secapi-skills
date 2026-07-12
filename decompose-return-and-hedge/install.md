@@ -1,22 +1,23 @@
-# Install: Decompose Return And Hedge
+# Install: Decompose Return and Hedge
 
 ## One-Command Install
 
 ```bash
 # Claude Code
-claude skill install ./skills/decompose-return-and-hedge
+claude skill install ./decompose-return-and-hedge
 
 # Codex
-codex skill add ./skills/decompose-return-and-hedge
+codex skill add ./decompose-return-and-hedge
 
 # Cowork
-cowork skill install ./skills/decompose-return-and-hedge
+cowork skill install ./decompose-return-and-hedge
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Decompose a stock's 6-month return into factors
-curl -s "https://api.secapi.ai/v1/factors/decomposition?ticker=AAPL&lookback=6m" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/decomposition?symbol=AAPL&lookback=6m" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 

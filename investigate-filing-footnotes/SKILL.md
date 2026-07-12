@@ -19,13 +19,13 @@ curl -s https://api.secapi.ai/v1/intelligence/query \
 ## Endpoints
 
 - `POST /v1/intelligence/query`
-- `GET /v1/intelligence/company?ticker=...`
+- `GET /v1/companies/overview?ticker=...`
 - `GET /v1/intelligence/security?ticker=...`
 
 ## Process
 
 1. Start with `intelligence/query` so the planner can classify the note investigation correctly.
-2. If the user wants broader issuer context, pull the company bundle.
+2. If the user wants broader issuer context, pull `companies/overview`.
 3. If the user wants market and hedge context around the same issuer, pull the security bundle.
 
 ## Example
@@ -34,7 +34,7 @@ Question: `What lease and revenue-recognition risks show up in CRM's latest 10-K
 
 Suggested sequence:
 - `POST /v1/intelligence/query` with `{"query":"Investigate the lease and revenue-recognition footnotes for CRM."}`
-- `GET /v1/intelligence/company?ticker=CRM` for supporting issuer context
+- `GET /v1/companies/overview?ticker=CRM` for supporting issuer context
 
 ## Guidelines
 

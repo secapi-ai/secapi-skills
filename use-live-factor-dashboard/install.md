@@ -4,19 +4,20 @@
 
 ```bash
 # Claude Code
-claude skill install ./skills/use-live-factor-dashboard
+claude skill install ./use-live-factor-dashboard
 
 # Codex
-codex skill add ./skills/use-live-factor-dashboard
+codex skill add ./use-live-factor-dashboard
 
 # Cowork
-cowork skill install ./skills/use-live-factor-dashboard
+cowork skill install ./use-live-factor-dashboard
 ```
 
-## Required Environment Variables
+## Environment Configuration
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
+# Optional runtime override; examples default to https://api.secapi.ai.
 export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
@@ -24,7 +25,7 @@ export SECAPI_BASE_URL="https://api.secapi.ai"
 
 ```bash
 # Get live intraday factor returns
-curl -s "https://api.secapi.ai/v1/factors/returns/intraday?window=5m" \
+curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/returns/intraday" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 

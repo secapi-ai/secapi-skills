@@ -1,11 +1,13 @@
 {
-  "name": "Analyze Company In Context",
+  "name": "Analyze Company in Context",
   "summary": "Build an issuer or security briefing from SEC API intelligence, factor exposures, macro regimes, and earnings context.",
   "description": "Use for a company overview, security briefing, allocator summary, or pre-investment context pack.",
   "status": "active",
   "tags": ["company", "security", "context", "factors", "macro"],
   "triggers": ["company analysis", "security overview", "allocator brief", "issuer context", "company bundle"],
   "requiredEndpoints": [
+    "GET /v1/companies/overview",
+    "GET /v1/companies/segments",
     "GET /v1/intelligence/company",
     "GET /v1/intelligence/security",
     "GET /v1/intelligence/earnings-preview",

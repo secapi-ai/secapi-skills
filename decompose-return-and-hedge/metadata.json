@@ -1,5 +1,5 @@
 {
-  "name": "Decompose Return And Hedge",
+  "name": "Decompose Return and Hedge",
   "summary": "Attribute a security return with factor decomposition and loadings, then evaluate hedge candidates.",
   "description": "Use to explain a security's return over a stated period or evaluate hedge candidates.",
   "status": "active",
