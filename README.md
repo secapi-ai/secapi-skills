@@ -36,7 +36,7 @@ The workflow starts with issuer resolution and Company Overview, then adds segme
 | [Decompose Return and Hedge](./decompose-return-and-hedge/SKILL.md) | A stated-period return explanation and candidate hedges. | `Decompose AAPL's last 6M return and identify hedge candidates.` |
 | [Investigate Filing Footnotes](./investigate-filing-footnotes/SKILL.md) | A review of lease, tax, revenue-recognition, debt-covenant, or segment disclosures. | `Investigate CRM's latest lease and revenue-recognition notes.` |
 | [Make Portfolio Factor Neutral](./make-portfolio-factor-neutral/SKILL.md) | Factor exposure analysis, a neutralization proposal, and stress testing. | `Analyze and neutralize the factor exposures in my AAPL/MSFT portfolio.` |
-| [Run Regime-Aware Screen](./run-regime-aware-screen/SKILL.md) | A tactical factor screen tied to the current macro regime. | `Run a US quality screen for the current regime.` |
+| [Run Regime-Aware Screen](./run-regime-aware-screen/SKILL.md) | Factor-rotation research with current country-level macro context. | `For US style factors, return factor-rotation research with current macro-regime context.` |
 | [Track Insiders and 13Fs](./track-insiders-and-13fs/SKILL.md) | Form 3/4/5 activity or a specific manager's 13F changes. | `Compare this manager's last two 13F periods: CIK 0001067983.` |
 | [Use Live Factor Dashboard](./use-live-factor-dashboard/SKILL.md) | Intraday factor moves, position loadings, correlations, and model-portfolio context. | `What factors are moving now, and why is NVDA sensitive?` |
 | [Write Country Regime Report](./write-country-regime-report/SKILL.md) | A country-level macro and regime brief. | `Write an allocator-style macro report on Japan.` |
