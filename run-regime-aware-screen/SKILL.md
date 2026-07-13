@@ -1,6 +1,6 @@
 ---
 name: run-regime-aware-screen
-description: Screens factors and candidates against the active macro regime. Use when the user asks for tightening-cycle screens, rate-sensitive ideas, or factor rotation suggestions under a named macro backdrop.
+description: Returns factor-rotation research informed by the current macro regime. Use when the user asks which factors lead or lag in a country-level macro context.
 ---
 
 # Run Regime Aware Screen
@@ -8,36 +8,33 @@ description: Screens factors and candidates against the active macro regime. Use
 ## Quick Start
 
 ```bash
-curl -s https://api.secapi.ai/v1/strategies/regime-screen \
+curl --fail --silent --show-error https://api.secapi.ai/v1/strategies/factor-rotation \
   -H "x-api-key: $SECAPI_API_KEY" \
   -H "content-type: application/json" \
-  -d '{"country":"US","lookback":"6m","category":"style"}'
+  -d '{"country":"US","category":"style","window":"1m","lookback":"6m","limit":5}'
 ```
 
 ## Endpoints
 
-- `POST /v1/strategies/regime-screen`
 - `POST /v1/strategies/factor-rotation`
 - `GET /v1/macro/regimes?country=...`
-- `GET /v1/factors/screen`
 
 ## Process
 
-1. Pull the active regime with `macro/regimes`.
-2. Run `regime-screen` for the shortlist.
-3. Run `factor-rotation` when the user wants leaders vs laggards.
-4. Use `factors/screen` for a broader factor leaderboard.
+1. Read `macro/regimes` for the country when you need to record its current macro context.
+2. Post the country, category, window, lookback, and limit to `factor-rotation`.
+3. Use the response's leaders, laggards, regime, and `asOf` fields in the research summary.
 
 ## Example
 
-Prompt: `Run a regime-aware quality screen for tightening cycles.`
+Prompt: `For US style factors, return factor-rotation research with current macro-regime context.`
 
 Preferred sequence:
 - `GET /v1/macro/regimes?country=US`
-- `POST /v1/strategies/regime-screen`
+- `POST /v1/strategies/factor-rotation`
 
 ## Guidelines
 
-- Always state the regime label and confidence.
-- Explain why a factor is favored in that regime.
-- Separate tactical screens from long-horizon thesis work.
+- Report the returned country, `asOf`, regime fields, leaders, and laggards.
+- Preserve the response rationale and disclosures when present.
+- Treat the result as factor-rotation research, not an individual-security screen or investment recommendation.

@@ -1,55 +1,28 @@
-# Install: Run Regime-Aware Screen
+# Run Regime-Aware Screen
 
-## One-Command Install
+Use this for factor-rotation research in current country-level macro context. It reads the regime when needed, then returns factor leaders and laggards; it does not turn a macro label into a long-horizon thesis.
 
-```bash
-# Claude Code
-claude skill install ./run-regime-aware-screen
-
-# Codex
-codex skill add ./run-regime-aware-screen
-
-# Cowork
-cowork skill install ./run-regime-aware-screen
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill run-regime-aware-screen
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` for a user-level install. Use `npx skills --help` to inspect the supported agent integration options.
+
+## Make the First Read
 
 ```bash
-# Run a regime-aware factor screen
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/strategies/regime-screen" \
-  -H "x-api-key: $SECAPI_API_KEY" \
-  -H "content-type: application/json" \
-  -d '{"country":"US","lookback":"6m","category":"style"}'
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/macro/regimes?country=US" \
+  -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `Identify the current US macro regime and return factor-rotation research for US style factors.`
 
-Screens factors and candidates against the active macro regime and rotation backdrop. Supports:
+## What Good Looks Like
 
-- Macro regime identification and labeling
-- Regime-aware factor screening
-- Factor rotation leader/laggard analysis
-- Broad factor leaderboard views
-- Tightening-cycle and rate-sensitive idea generation
+The response states the returned country, observation time, regime context, leaders, and laggards before interpretation. Preserve the returned rationale and disclosures when present, and keep factor-rotation research distinct from a durable business thesis. Regimes and rankings can change as data changes; record their observation time.
 
-## Triggers
-
-This skill activates when you ask about:
-- Regime screen
-- Tightening cycle
-- Factor rotation
-- Macro regime
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the sequence and [metadata](./metadata.json) for triggers and declared endpoint dependencies.

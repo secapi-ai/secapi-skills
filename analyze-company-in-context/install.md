@@ -1,54 +1,28 @@
-# Install: Analyze Company in Context
+# Analyze Company in Context
 
-## One-Command Install
+Use this when an investor needs a fast, source-aware brief before deciding whether a company deserves deeper work. It starts with the issuer snapshot, then brings in segments, security context, earnings, factors, and macro only when they change the conclusion.
 
-```bash
-# Claude Code
-claude skill install ./analyze-company-in-context
-
-# Codex
-codex skill add ./analyze-company-in-context
-
-# Cowork
-cowork skill install ./analyze-company-in-context
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill analyze-company-in-context
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` to install for your user-level configuration. The Skills CLI chooses the supported agent integration; inspect its options with `npx skills --help` rather than relying on a client-specific command.
+
+## Make the First Read
 
 ```bash
-# Get a company overview by ticker
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/companies/overview?ticker=MSFT" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/companies/overview?ticker=MSFT&include=segments,dilution" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `Give me a fast allocator context pack on MSFT. Lead with the decision-relevant facts; separate filing evidence from interpretation.`
 
-Builds company and security context packs using SEC API intelligence bundles, macro overlays, factor exposures, and earnings context. Supports:
+## What Good Looks Like
 
-- Issuer-level company briefings
-- Security-level trading and return driver analysis
-- Earnings preview context near reporting windows
-- Factor exposure and macro regime overlays
-- Allocator-style summary output
+The answer identifies the issuer, its business and segment mix, the relevant security or earnings context, and only the factor or macro overlays that affect the case. Filing-derived numbers carry the response's accession number and filing URL. A context pack is not a full diligence memo or a hedge recommendation; escalate to the dedicated skills when that is the real task.
 
-## Triggers
-
-This skill activates when you ask about:
-- Company analysis
-- Security overview
-- Allocator brief
-- Issuer context
-- Company bundle
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the endpoint sequence and [metadata](./metadata.json) for discovery triggers and declared dependencies.

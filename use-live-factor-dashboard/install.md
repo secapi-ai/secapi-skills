@@ -1,53 +1,28 @@
-# Install: Use Live Factor Dashboard
+# Use Live Factor Dashboard
 
-## One-Command Install
+Use this for a compact view of factor moves, the loadings behind a position, and correlation or model-portfolio context. It is a monitoring workflow, not a claim that the intraday signal is final.
 
-```bash
-# Claude Code
-claude skill install ./use-live-factor-dashboard
-
-# Codex
-codex skill add ./use-live-factor-dashboard
-
-# Cowork
-cowork skill install ./use-live-factor-dashboard
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill use-live-factor-dashboard
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` for a user-level install. Confirm the agent options your CLI supports with `npx skills --help`.
+
+## Make the First Read
 
 ```bash
-# Get live intraday factor returns
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/returns/intraday" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/factors/returns/intraday" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `What factors are moving now, which are most unusual, and why is NVDA sensitive? Flag stale or proxy-based intraday data explicitly.`
 
-Powers a live factor dashboard with intraday returns, stock loadings, and model-portfolio drill-down. Supports:
+## What Good Looks Like
 
-- Intraday factor return monitoring
-- Stock-level factor loading diagnostics
-- Model portfolio factor views
-- Factor correlation and cluster analysis
-- Dashboard-style compact numerical output
+The output keeps the live panel numerically dense, connects a factor move to position loadings, and uses correlations only as risk context. Record the response timestamp and call out a stale or proxy-based series when the response indicates one. Intraday returns are not a closing-price record or an execution signal.
 
-## Triggers
-
-This skill activates when you ask about:
-- Live factor dashboard
-- Intraday factor returns
-- Factor monitor
-- Factor leaderboard live
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the sequence and [metadata](./metadata.json) for triggers and declared endpoint dependencies.

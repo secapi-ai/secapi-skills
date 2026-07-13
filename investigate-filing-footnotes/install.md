@@ -1,55 +1,29 @@
-# Install: Investigate Filing Footnotes
+# Investigate Filing Footnotes
 
-## One-Command Install
+Use this when the investment question lives in the notes: lease commitments, taxes, revenue recognition, covenants, or segments. It turns a broad question into a filing investigation, not generic accounting commentary.
 
-```bash
-# Claude Code
-claude skill install ./investigate-filing-footnotes
-
-# Codex
-codex skill add ./investigate-filing-footnotes
-
-# Cowork
-cowork skill install ./investigate-filing-footnotes
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill investigate-filing-footnotes
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` for a user-level install. Use `npx skills --help` to verify the agent targets supported by your CLI version.
+
+## Make the First Read
 
 ```bash
-# Investigate footnotes for a company
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/intelligence/query" \
+curl --fail --silent --show-error https://api.secapi.ai/v1/intelligence/query \
   -H "x-api-key: $SECAPI_API_KEY" \
   -H "content-type: application/json" \
-  -d '{"query":"Investigate the lease, tax, and revenue-recognition footnotes for CRM."}'
+  -d '{"query":"Investigate the lease and revenue-recognition footnotes for CRM."}'
 ```
 
-## What This Skill Does
+Then ask: `What lease and revenue-recognition risks appear in CRM's latest 10-K? Cite each finding with its accession number, filing URL, and note or section.`
 
-Investigates filing footnotes and structured filing risk context using semantic query planning. Supports:
+## What Good Looks Like
 
-- Lease, tax, revenue-recognition, debt covenant, and segment-note analysis
-- Semantic query planning for intelligent footnote classification
-- Company and security intelligence bundles for supporting context
+The answer identifies the exact note family, records which filing it examined, and keeps disclosed facts separate from analytical judgment. It should say when the evidence is incomplete rather than generalizing from another issuer or period.
 
-## Triggers
-
-This skill activates when you ask about:
-- Footnotes
-- Lease notes
-- Tax footnotes
-- Revenue recognition
-- Segment notes
-- Debt covenants
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the process and [metadata](./metadata.json) for triggers and declared endpoint dependencies.

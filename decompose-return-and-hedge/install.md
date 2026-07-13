@@ -1,52 +1,28 @@
-# Install: Decompose Return and Hedge
+# Decompose Return and Hedge
 
-## One-Command Install
+Use this to explain a security's return over a named period and assess possible hedges. It is an attribution workflow: it should distinguish factor contributions from issuer-specific overlays instead of giving a post-hoc market story.
 
-```bash
-# Claude Code
-claude skill install ./decompose-return-and-hedge
-
-# Codex
-codex skill add ./decompose-return-and-hedge
-
-# Cowork
-cowork skill install ./decompose-return-and-hedge
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill decompose-return-and-hedge
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Use `--global` for a user-level install. Confirm your supported agent targets with `npx skills --help`.
+
+## Make the First Read
 
 ```bash
-# Decompose a stock's 6-month return into factors
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/decomposition?symbol=AAPL&lookback=6m" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/factors/decomposition?symbol=AAPL&lookback=6m" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `Decompose AAPL's last 6M return. State the lookback, report fit diagnostics, separate factor and issuer-specific drivers, then evaluate hedge candidates.`
 
-Breaks down a security return into factor and macro context, then proposes hedge candidates. Supports:
+## What Good Looks Like
 
-- Factor decomposition over configurable lookback windows
-- Stock factor loadings and fit diagnostics
-- Security intelligence bundle for filing-specific risks
-- Hedge candidate generation with expected exposure delta
+The output names the window, reports weak fit instead of hiding it, and labels hedge candidates as exposure trade-offs rather than recommendations. Filing or news context must be sourced distinctly from factor attribution. A decomposition cannot establish causality or guarantee hedge performance.
 
-## Triggers
-
-This skill activates when you ask about:
-- Decompose return
-- Why did this stock move
-- Hedge this position
-- Return drivers
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the sequence and [metadata](./metadata.json) for triggers and declared endpoint dependencies.
