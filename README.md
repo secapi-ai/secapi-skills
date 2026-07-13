@@ -1,87 +1,94 @@
 # SEC API Skills
 
-SEC API Skills give an AI agent repeatable research workflows for SEC filings, company analysis, ownership, factors, portfolios, and macro research. Install a skill when you want your agent to know which SEC API calls to make, what context to gather, and when filing-derived claims need provenance.
+Research workflows for agents that can call the SEC API. A skill does not fetch data or make an investment decision on its own. It gives an agent a disciplined sequence of API reads, the questions to settle before it writes, and the evidence it must preserve when the answer rests on a filing.
 
-Each skill is a directory containing a `SKILL.md` workflow and `metadata.json` with its triggers and required API routes. The skills guide an agent; they do not replace an SEC API account, API key, or the agent runtime's ability to make API calls.
+Start with one workflow, not the whole shelf. Install `company-due-diligence` when you want a cited issuer memo; install `investigate-filing-footnotes` when the question is a disclosure question. The per-skill `install.md` files include a first request and a prompt you can run immediately.
 
-## Install
+## First Useful Result
 
-This repository is consumable with the [Skills CLI](https://www.skills.sh/docs/cli). The commands below use its documented repository-install flow.
-
-Install all nine skills for your user-level agent configuration:
+Install the company diligence workflow in the current project:
 
 ```bash
-npx skills add https://github.com/secapi-ai/secapi-skills --global --all
+npx skills add secapi-ai/secapi-skills --skill company-due-diligence
 ```
 
-Or install one skill:
-
-```bash
-npx skills add https://github.com/secapi-ai/secapi-skills --global --skill company-due-diligence
-```
-
-Omit `--global` to install for the current project. To select an integration explicitly, use the agent names accepted by your installed CLI:
-
-```bash
-npx skills add https://github.com/secapi-ai/secapi-skills --agent <agent> --skill company-due-diligence
-npx skills --help
-```
-
-The repository's individual `install.md` files also include client-specific instructions for Claude Code, Codex, and Cowork. Those instructions are supplied with each skill; verify support and configuration in the version of the client you run.
-
-## Configure SEC API Access
-
-Create an API key through [SEC API](https://secapi.ai), then make it available to the agent runtime that will execute the workflow:
+Give the agent a key in the runtime where it will make requests:
 
 ```bash
 export SECAPI_API_KEY="your-api-key"
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-SEC API REST requests authenticate with `x-api-key`. Keep the key in your runtime or secret manager, never in a prompt or committed file. See the [getting-started guide](https://docs.secapi.ai/getting-started), [API conventions](https://docs.secapi.ai/api-conventions), and [API reference](https://docs.secapi.ai/api-reference) for account setup and route contracts.
-
-## Use a Skill
-
-After installing a skill and configuring the agent's SEC API access, ask for the analysis in ordinary language. For example, with `company-due-diligence` installed:
+Then ask it for a bounded result:
 
 ```text
-Do full due diligence on NVDA. Cite every filing-derived claim with its accession number, filing URL, and item or page.
+Prepare a due-diligence memo on NVDA. Separate filing facts from interpretation.
+For every filing-derived claim, include the accession number, filing URL, and item or page.
 ```
 
-The workflow directs the agent to resolve the entity, gather company, factor, ownership, and filing context, and separate evidence from interpretation. Review the skill before relying on it for a decision: prompts, required inputs, lookback windows, and response availability vary by workflow.
+The workflow starts with issuer resolution and Company Overview, then adds segments, ownership, factor context, filing sections, and dilution only where they change the memo. It should name its reporting periods and leave unanswered questions unanswered.
 
-## Skills
+## Choose a Workflow
 
-| Skill | Use it for |
-| --- | --- |
-| [Analyze Company in Context](./analyze-company-in-context/SKILL.md) | A company or security briefing with issuer, factor, macro, and earnings context. |
-| [Company Due Diligence](./company-due-diligence/SKILL.md) | A cited company workup covering issuer data, segments, factors, ownership, filings, and dilution. |
-| [Decompose Return and Hedge](./decompose-return-and-hedge/SKILL.md) | Security return attribution, factor context, and hedge candidates. |
-| [Investigate Filing Footnotes](./investigate-filing-footnotes/SKILL.md) | Lease, tax, revenue-recognition, debt-covenant, and segment-note research. |
-| [Make Portfolio Factor-Neutral](./make-portfolio-factor-neutral/SKILL.md) | Portfolio factor exposures, neutralization, optimization, and stress testing. |
-| [Run Regime-Aware Screen](./run-regime-aware-screen/SKILL.md) | Factor screens and rotation analysis under a macro regime. |
-| [Track Insiders and 13Fs](./track-insiders-and-13fs/SKILL.md) | Form 3, 4, and 5 activity plus 13F holdings and period comparisons. |
-| [Use Live Factor Dashboard](./use-live-factor-dashboard/SKILL.md) | Intraday factor monitoring, security loadings, correlations, and model-portfolio views. |
-| [Write Country Regime Report](./write-country-regime-report/SKILL.md) | A country macro report using high-signal data and regime context. |
+| Skill | Use it when you need | First request to give the agent |
+| --- | --- | --- |
+| [Analyze Company in Context](./analyze-company-in-context/SKILL.md) | A fast issuer or security brief with business, earnings, factor, and macro context. | `Give me an allocator context pack on NVDA.` |
+| [Company Due Diligence](./company-due-diligence/SKILL.md) | A source-backed company memo across business mix, ownership, filings, and dilution. | `Run full due diligence on NVDA.` |
+| [Decompose Return and Hedge](./decompose-return-and-hedge/SKILL.md) | A stated-period return explanation and candidate hedges. | `Decompose AAPL's last 6M return and identify hedge candidates.` |
+| [Investigate Filing Footnotes](./investigate-filing-footnotes/SKILL.md) | A review of lease, tax, revenue-recognition, debt-covenant, or segment disclosures. | `Investigate CRM's latest lease and revenue-recognition notes.` |
+| [Make Portfolio Factor Neutral](./make-portfolio-factor-neutral/SKILL.md) | Factor exposure analysis, a neutralization proposal, and stress testing. | `Analyze and neutralize the factor exposures in my AAPL/MSFT portfolio.` |
+| [Run Regime-Aware Screen](./run-regime-aware-screen/SKILL.md) | A tactical factor screen tied to the current macro regime. | `Run a US quality screen for the current regime.` |
+| [Track Insiders and 13Fs](./track-insiders-and-13fs/SKILL.md) | Form 3/4/5 activity or a specific manager's 13F changes. | `Compare this manager's last two 13F periods: CIK 0001067983.` |
+| [Use Live Factor Dashboard](./use-live-factor-dashboard/SKILL.md) | Intraday factor moves, position loadings, correlations, and model-portfolio context. | `What factors are moving now, and why is NVDA sensitive?` |
+| [Write Country Regime Report](./write-country-regime-report/SKILL.md) | A country-level macro and regime brief. | `Write an allocator-style macro report on Japan.` |
 
-Each directory also has an `install.md` with a short API request example and a `metadata.json` record of its triggers and required endpoints.
+## Install Deliberately
 
-## Compatibility and Status
+The [Skills CLI](https://www.skills.sh/docs/cli) is the supported installation path for this repository. By default it prompts for the installation scope and agent targets. Add `--global` for a user-level install, or install the whole collection only after you know you need it:
 
-All nine skills are marked `active` in their checked-in metadata. They are discoverable by the Skills CLI as of this repository version. The repository does not include automated compatibility tests for individual agent clients, so confirm skill loading and API authentication in your target runtime.
+```bash
+# One workflow for this project
+npx skills add secapi-ai/secapi-skills --skill investigate-filing-footnotes
 
-API route access, market-data coverage, and live or intraday data depend on your SEC API plan, provider entitlements, and current service state. Preserve response provenance, freshness, degraded-state, and rate-limit metadata when using results in user-facing work. See [coverage and depth](https://docs.secapi.ai/coverage-and-depth), [freshness and trust](https://docs.secapi.ai/freshness-and-trust), and [status](https://docs.secapi.ai/status).
+# All skills for your user-level configuration
+npx skills add secapi-ai/secapi-skills --global --all
 
-## Docs and Support
+# Inspect supported flags and installed skills
+npx skills --help
+npx skills list
+```
 
-- [SEC API documentation](https://docs.secapi.ai)
-- [MCP workflows](https://docs.secapi.ai/mcp-workflows)
-- [Libraries and SDKs](https://docs.secapi.ai/libraries-and-sdks)
-- [SEC API changelog](https://docs.secapi.ai/changelog)
-- [Repository issues](https://github.com/secapi-ai/secapi-skills/issues) for problems with these skill files
-
-To update installed skills, use the Skills CLI:
+Use the `--agent` option only with an agent name your installed CLI reports as supported. This repository does not maintain or test every agent client's native skill command; the Skills CLI owns that integration step. Update an installed copy when you deliberately want a newer workflow:
 
 ```bash
 npx skills update
 ```
+
+## API Access and a Safe Check
+
+The workflows call `https://api.secapi.ai/v1` and authenticate REST requests with `x-api-key`. Create and rotate keys through [SEC API](https://secapi.ai), then put `SECAPI_API_KEY` in the agent runtime's secret store or environment. Do not paste it into a prompt, browser code, checked-in configuration, or a support ticket.
+
+Before using a skill in a production workflow, make one recognizable read with the same runtime and key your agent will use:
+
+```bash
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/companies/overview?ticker=AAPL" \
+  -H "x-api-key: $SECAPI_API_KEY"
+```
+
+That verifies credentials, network egress, and a real response. It does not prove that every issuer, derived dataset, market-data entitlement, or live surface is available to your account.
+
+## Treat Evidence as Part of the Output
+
+For filing-derived work, retain the accession number, filing URL, and cited item, section, or page supplied in the response `provenance`. Say what is extracted evidence and what is your interpretation. Retain request IDs, timestamps, freshness, degradation, and rate-limit information when the endpoint returns them. For `429`, respect `Retry-After` and reduce concurrency; do not turn one request into an unbounded retry loop.
+
+The skills are research aids, not investment advice. A factor decomposition is an attribution model, a 13F is a periodic filing rather than a real-time position, and an intraday response can be stale or proxy-based. Read the workflow's lookbacks, required inputs, and caveats before automating an output or using it in a decision.
+
+## Reference
+
+Each skill directory contains its workflow, install notes, and a checked-in metadata record of its triggers and declared endpoint dependencies:
+
+- `SKILL.md` — the agent's process, output format, and workflow-specific evidence rules
+- `install.md` — a targeted installation command, first API request, and first prompt
+- `metadata.json` — active status, discovery triggers, and required API routes
+
+For precise request and response contracts, use the [API reference](https://docs.secapi.ai/api-reference). For service state and failure evidence, use [status and support signals](https://docs.secapi.ai/status). File workflow issues at [github.com/secapi-ai/secapi-skills/issues](https://github.com/secapi-ai/secapi-skills/issues).

@@ -1,55 +1,28 @@
-# Install: Company Due Diligence
+# Company Due Diligence
 
-## One-Command Install
+Use this for an investable company workup, not a generic company summary. The workflow connects business mix, financial snapshot, factors, ownership, filing sections, and dilution into one memo with a visible evidence trail.
 
-```bash
-# Claude Code
-claude skill install ./company-due-diligence
-
-# Codex
-codex skill add ./company-due-diligence
-
-# Cowork
-cowork skill install ./company-due-diligence
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill company-due-diligence
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` for a user-level install. The Skills CLI handles supported agent targets; run `npx skills --help` to see the options available in your installed version.
+
+## Make the First Read
 
 ```bash
-# Resolve the issuer + snapshot in one call
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/companies/overview?ticker=NVDA&include=segments,dilution" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/companies/overview?ticker=NVDA&include=segments,dilution,footnotes" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `Prepare a due-diligence memo on NVDA. Separate filing facts from interpretation, and cite every filing-derived claim with accession number, filing URL, and item or page.`
 
-Runs a full company due-diligence workflow and outputs a cited DD memo:
+## What Good Looks Like
 
-- Entity resolution + Company Overview and business Segments
-- Financials, ratios, factor exposures, and return decomposition
-- Ownership: 13F institutional holders + Form 3/4/5 insider activity
-- 10-K Item 1 / 1A / 7 filing-section extraction with citations
-- Dilution score with per-factor breakdown
-- A cited memo where every filing-sourced claim carries an accession number + filing URL + page
+The resulting memo names the reporting periods it uses, distinguishes company-level institutional ownership from a manager's 13F portfolio, and ends with open questions rather than manufactured conviction. Filing claims must retain the response `provenance`; a factor exposure or dilution score is model output, not a substitute for the cited underlying evidence.
 
-## Triggers
-
-This skill activates when you ask about:
-- Due diligence
-- Deep dive
-- Company workup
-- Pre-investment pack
-- Full company analysis / DD memo
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the full process and [metadata](./metadata.json) for triggers and declared endpoint dependencies.

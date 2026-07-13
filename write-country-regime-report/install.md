@@ -1,54 +1,28 @@
-# Install: Write Country Regime Report
+# Write Country Regime Report
 
-## One-Command Install
+Use this for a country-specific macro brief grounded in the high-signal pack, regime state, and report workflow. It should connect observed data, release timing, forecasts, and watch items without blurring them together.
 
-```bash
-# Claude Code
-claude skill install ./write-country-regime-report
-
-# Codex
-codex skill add ./write-country-regime-report
-
-# Cowork
-cowork skill install ./write-country-regime-report
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill write-country-regime-report
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` for a user-level install. Use `npx skills --help` to inspect supported agent integration options.
+
+## Make the First Read
 
 ```bash
-# Fetch the Japan high-signal macro pack
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/macro/high-signal-pack?country=JP" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/macro/high-signal-pack?country=JP" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `Write an allocator-style report on Japan. State the country and lookback, use the high-signal pack, and distinguish observed data from forecasts and estimated release timing.`
 
-Builds allocator-style country reports from the high-signal pack, macro regime state, and country-report endpoint. Supports:
+## What Good Looks Like
 
-- Country macro regime identification
-- Growth, inflation, labor, policy, and trade driver analysis
-- Official-source high-signal data packs
-- Release calendar and forecast context
-- Narrative allocator memos via intelligence query
+The report anchors the regime before explaining growth, inflation, labor, policy, and trade. It uses the official-source series identified by the high-signal pack where available and labels both forecast and release-date uncertainty. A country report is a dated research artifact, not a standing macro forecast.
 
-## Triggers
-
-This skill activates when you ask about:
-- Country report
-- Macro report
-- Japan economy
-- China outlook
-- Macro regime report
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the process and [metadata](./metadata.json) for triggers and declared endpoint dependencies.

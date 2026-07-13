@@ -1,52 +1,28 @@
-# Install: Track Insiders and 13Fs
+# Track Insiders and 13Fs
 
-## One-Command Install
+Use this to examine company insider filings or a particular manager's reported 13F book. Those are different questions: insider data is issuer-level Form 3, 4, and 5 activity, while manager 13F analysis requires the filer's 10-digit CIK.
 
-```bash
-# Claude Code
-claude skill install ./track-insiders-and-13fs
-
-# Codex
-codex skill add ./track-insiders-and-13fs
-
-# Cowork
-cowork skill install ./track-insiders-and-13fs
-```
-
-## Environment Configuration
+## Install and Connect
 
 ```bash
+npx skills add secapi-ai/secapi-skills --skill track-insiders-and-13fs
 export SECAPI_API_KEY="your-api-key"
-# Optional runtime override; examples default to https://api.secapi.ai.
-export SECAPI_BASE_URL="https://api.secapi.ai"
 ```
 
-## Quick Start
+Add `--global` for a user-level install. Inspect supported agent targets with `npx skills --help`.
+
+## Make the First Read
 
 ```bash
-# Get insider activity for a ticker
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/insiders?ticker=NVDA" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/insiders?ticker=NVDA&forms=3,4,5" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## What This Skill Does
+Then ask: `Summarize recent NVDA Form 3, 4, and 5 activity. Identify clusters or repeat actors, and cite the accession number and filing URL for each material transaction.`
 
-Tracks insider activity and institutional (13F) ownership changes. Supports:
+## What Good Looks Like
 
-- Insider buying/selling activity by company
-- 13F institutional holder lookups by manager CIK
-- Quarter-over-quarter ownership comparison (style drift detection)
-- Narrative explanations via the intelligence query planner
+The analysis names the reporting period, distinguishes transactions from institutional ownership, and does not imply that a delayed 13F filing is a live position. For manager comparisons, require a 10-digit filer CIK and two explicit reporting periods. A row dump is not an ownership thesis.
 
-## Triggers
-
-This skill activates when you ask about:
-- Insider buying or selling
-- 13F changes
-- Style drift
-- Institutional holders
-
-## Documentation
-
-- [SKILL.md](./SKILL.md) — Full workflow guidance and endpoint reference
-- [metadata.json](./metadata.json) — Triggers, tags, and required endpoints
+Read the [workflow](./SKILL.md) for the process and [metadata](./metadata.json) for triggers and declared endpoint dependencies.
