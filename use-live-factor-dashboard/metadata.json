@@ -1,10 +1,10 @@
 {
   "name": "Use Live Factor Dashboard",
-  "summary": "Monitor intraday factor returns with security loadings, factor correlations, and model-portfolio drill-down.",
-  "description": "Use for intraday factor monitoring, factor anomalies, security loadings, or model-portfolio factor views.",
+  "summary": "Monitor intraday factor moves with security loadings, correlations, and model-portfolio context.",
+  "description": "Use when you need a live factor view, unusual factor moves, or an explanation of a position's factor sensitivity.",
   "status": "active",
   "tags": ["dashboard", "intraday", "factors", "live", "portfolio"],
-  "triggers": ["live factor dashboard", "intraday factor returns", "factor monitor", "factor leaderboard live"],
+  "triggers": ["live factor dashboard", "intraday factor returns", "factor monitor", "factor leaderboard live", "factors moving now", "factor sensitivity"],
   "requiredEndpoints": [
     "GET /v1/factors/returns/intraday",
     "GET /v1/stocks/{ticker}/loadings",

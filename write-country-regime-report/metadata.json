@@ -1,10 +1,10 @@
 {
   "name": "Write Country Regime Report",
-  "summary": "Build a country macro report from the high-signal pack, macro regime state, and country-report routes.",
-  "description": "Use for a country macro report, regime memo, or 12-18 month outlook for one economy.",
+  "summary": "Write a dated country macro report from official-source data, regime context, and release metadata.",
+  "description": "Use when you need a country macro brief or regime memo that separates observed data from forecasts and release timing.",
   "status": "active",
   "tags": ["macro", "country-report", "regime", "official-data"],
-  "triggers": ["country report", "macro report", "japan economy", "china outlook", "macro regime report"],
+  "triggers": ["country report", "macro report", "japan economy", "china outlook", "macro regime report", "country outlook", "allocator macro brief"],
   "requiredEndpoints": [
     "GET /v1/macro/high-signal-pack",
     "GET /v1/macro/regimes",
