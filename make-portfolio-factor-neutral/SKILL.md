@@ -1,6 +1,6 @@
 ---
 name: make-portfolio-factor-neutral
-description: Uses portfolio factor analysis, optimization, and stress testing to move a portfolio toward factor neutrality. Use when the user asks how to neutralize exposures, hedge a portfolio, or reduce factor concentration.
+description: Analyzes portfolio factor exposures, proposes a neutralization, and validates the adjustment with stress tests. Use when the user has portfolio weights and needs to reduce factor concentration or evaluate a portfolio hedge.
 ---
 
 # Make Portfolio Factor Neutral

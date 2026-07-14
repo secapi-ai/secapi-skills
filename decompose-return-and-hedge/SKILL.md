@@ -1,6 +1,6 @@
 ---
 name: decompose-return-and-hedge
-description: Breaks down a security return into factor and macro context, then proposes hedge candidates. Use when the user asks why a stock moved, what drove a return period, or how to hedge the position.
+description: Explains a security return over a stated period with factor attribution, loadings, and hedge-candidate analysis. Use when the user needs to understand what drove a stock move or compare hedges by their expected exposure trade-offs.
 ---
 
 # Decompose Return and Hedge

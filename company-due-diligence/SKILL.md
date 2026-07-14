@@ -1,6 +1,6 @@
 ---
 name: company-due-diligence
-description: Runs a full company due-diligence workflow — resolves the entity, pulls Company Overview and business Segments, layers financials, factor exposures and decomposition, ownership (13F + Form 3/4/5), filing sections, and a dilution score, then outputs a cited DD memo with filing provenance and accession references. Use when the user asks for a deep dive, pre-investment due-diligence pack, or full company workup.
+description: Produces a filing-cited company due-diligence memo covering business mix, ownership, factors, and dilution. Use for a company deep dive or pre-investment workup when the final memo needs traceable filing evidence.
 ---
 
 # Company Due Diligence

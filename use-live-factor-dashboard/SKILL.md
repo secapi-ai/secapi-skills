@@ -1,6 +1,6 @@
 ---
 name: use-live-factor-dashboard
-description: Uses SEC API intraday factor returns, stock loadings, and model-portfolio views to power a live factor dashboard. Use when the user asks for live factor performance, intraday anomalies, or dashboard-style factor monitoring.
+description: Monitors intraday factor moves with security loadings, correlations, and model-portfolio context. Use when the user needs a live factor view, unusual factor moves, or an explanation of a position's factor sensitivity.
 ---
 
 # Use Live Factor Dashboard

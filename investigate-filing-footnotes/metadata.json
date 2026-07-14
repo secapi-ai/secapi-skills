@@ -1,13 +1,13 @@
 {
   "name": "Investigate Filing Footnotes",
-  "summary": "Investigate filing footnotes and accounting-risk disclosures with the semantic query and issuer-intelligence routes.",
-  "description": "Use to investigate lease, tax, revenue-recognition, debt-covenant, or segment-note disclosures.",
+  "summary": "Investigate filing footnotes and accounting disclosures with source-linked findings.",
+  "description": "Use when an investment question concerns lease, tax, revenue-recognition, debt-covenant, or segment-note disclosures.",
   "status": "active",
   "tags": ["footnotes", "filings", "accounting", "semantic-query", "risk"],
-  "triggers": ["footnotes", "lease note", "tax footnote", "revenue recognition", "segment note", "debt covenant"],
+  "triggers": ["footnotes", "lease note", "tax footnote", "revenue recognition", "segment note", "debt covenant", "accounting risks", "filing note analysis"],
   "requiredEndpoints": [
     "POST /v1/intelligence/query",
-    "GET /v1/intelligence/company",
+    "GET /v1/companies/overview",
     "GET /v1/intelligence/security"
   ],
   "tier": "core",

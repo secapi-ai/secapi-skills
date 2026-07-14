@@ -1,6 +1,6 @@
 ---
 name: investigate-filing-footnotes
-description: Investigates filing footnotes and structured filing risk context using SEC API intelligence and semantic query planning. Use when the user asks about lease, tax, revenue-recognition, debt covenant, or segment-note issues.
+description: Investigates filing footnotes and accounting disclosures with source-linked findings. Use when an investment question concerns lease, tax, revenue-recognition, debt-covenant, or segment-note disclosures.
 ---
 
 # Investigate Filing Footnotes
