@@ -1,6 +1,6 @@
 ---
 name: write-country-regime-report
-description: Produces a country macro report using the official-source high-signal pack, release metadata, and regime context. Use when the user asks for a macro briefing, country outlook, or allocator report on one economy.
+description: Writes a dated country macro report from official-source data, regime context, and release metadata. Use when the user needs a country macro brief or regime memo that separates observed data from forecasts and release timing.
 ---
 
 # Write Country Regime Report

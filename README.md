@@ -45,7 +45,7 @@ Every skill directory includes an `install.md` with its installation command, fi
 
 ## Install and Check Access
 
-The [Skills CLI](https://www.skills.sh/docs/cli) installs and manages skills for AI agents. It prompts for installation scope and agent targets. Use `--global` for a user-level installation, and use `--all` only when you want the entire collection:
+The [Skills CLI](https://www.skills.sh/docs/cli) installs and manages skills for AI agents. When it detects a supported agent, it can install directly; otherwise it prompts when it needs an installation scope or agent target. Use `--global` for a user-level installation, and use `--all` only when you want the entire collection:
 
 ```bash
 # One workflow for this project
@@ -81,4 +81,4 @@ These are research workflows, not investment advice. A factor decomposition is a
 - [SEC API status](https://docs.secapi.ai/status) for public service checks and request diagnosis
 - [SEC API Skills issues](https://github.com/secapi-ai/secapi-skills/issues) for workflow feedback
 
-Each skill's `metadata.json` lists its active status, discovery triggers, and declared API dependencies.
+Each skill's `metadata.json` records its active status, supplemental discovery terms, and declared API dependencies. The public Skills CLI uses the `SKILL.md` frontmatter for skill discovery.

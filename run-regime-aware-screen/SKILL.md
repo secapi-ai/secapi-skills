@@ -1,6 +1,6 @@
 ---
 name: run-regime-aware-screen
-description: Returns factor-rotation research informed by the current macro regime. Use when the user asks which factors lead or lag in a country-level macro context.
+description: Compares factor-rotation leaders and laggards in a country's current macro context. Use when the user needs country-specific factor-rotation research anchored to the current macro regime.
 ---
 
 # Run Regime Aware Screen

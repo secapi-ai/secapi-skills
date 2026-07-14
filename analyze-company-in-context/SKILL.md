@@ -1,6 +1,6 @@
 ---
 name: analyze-company-in-context
-description: Builds a company or security view using SEC API intelligence bundles, macro overlays, factor exposures, and earnings context. Use when the user asks for a company briefing, security overview, or allocator-style company summary.
+description: Builds a compact company or security brief from company, earnings, factor, and macro context. Use when the user needs a fast company brief or allocator context pack before deciding whether to do deeper research.
 ---
 
 # Analyze Company in Context

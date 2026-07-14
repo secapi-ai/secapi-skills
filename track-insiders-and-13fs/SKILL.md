@@ -1,6 +1,6 @@
 ---
 name: track-insiders-and-13fs
-description: Tracks insider activity and 13F ownership changes using SEC API ownership endpoints. Use when the user asks about insider buying, institutional holders, or manager style drift across two 13F periods.
+description: Analyzes Form 3, 4, and 5 insider activity or compares a manager's reported 13F holdings across periods. Use when the user needs company insider activity or a manager's 13F changes, filing history, and style drift.
 ---
 
 # Track Insiders And 13Fs
