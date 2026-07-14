@@ -7,7 +7,7 @@
   "triggers": ["footnotes", "lease note", "tax footnote", "revenue recognition", "segment note", "debt covenant", "accounting risks", "filing note analysis"],
   "requiredEndpoints": [
     "POST /v1/intelligence/query",
-    "GET /v1/intelligence/company",
+    "GET /v1/companies/overview",
     "GET /v1/intelligence/security"
   ],
   "tier": "core",

@@ -8,7 +8,7 @@
   "requiredEndpoints": [
     "GET /v1/companies/overview",
     "GET /v1/companies/segments",
-    "GET /v1/intelligence/company",
+    "GET /v1/entities/resolve",
     "GET /v1/intelligence/security",
     "GET /v1/intelligence/earnings-preview",
     "GET /v1/factors/exposures",
