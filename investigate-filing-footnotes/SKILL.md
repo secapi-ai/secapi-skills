@@ -1,43 +1,31 @@
 ---
 name: investigate-filing-footnotes
-description: Investigates filing footnotes and accounting disclosures with source-linked findings. Use when an investment question concerns lease, tax, revenue-recognition, debt-covenant, or segment-note disclosures.
+description: Investigates a defined accounting disclosure with source-linked findings. Use when lease, tax, revenue-recognition, debt, covenant, or segment notes could change the investment case.
 ---
 
 # Investigate Filing Footnotes
 
-## Quick Start
+Turn an accounting question into a filing investigation. Define the note family and filing period first; return the disclosed evidence and its limits, not a generic accounting lecture.
 
-Use the semantic planner for the broad request, then follow with the company or security bundle if you need supporting context.
+## First Read
 
-```bash
-curl -s https://api.secapi.ai/v1/intelligence/query \
-  -H "x-api-key: $SECAPI_API_KEY" \
-  -H "content-type: application/json" \
-  -d '{"query":"Investigate the lease, tax, and revenue-recognition footnotes for CRM."}'
+Install the skill, then ask the agent to locate the relevant filing material through the intelligence workflow declared in `metadata.json`:
+
+```text
+Investigate CRM's latest annual-report lease and revenue-recognition notes.
+For each finding, identify the filing, accession number, filing URL, and note,
+section, or page. Separate disclosed facts from interpretation.
 ```
 
-## Endpoints
+## Research Path
 
-- `POST /v1/intelligence/query`
-- `GET /v1/companies/overview?ticker=...`
-- `GET /v1/intelligence/security?ticker=...`
+1. Pin down issuer, filing form, reporting period, and note family.
+2. Use the intelligence query route to locate relevant filing material; use `GET /v1/companies/overview` only for issuer context.
+3. Read the cited disclosure rather than extrapolating from a summary.
+4. Record the exact filing and passage behind each finding. If the record is incomplete, say so.
 
-## Process
+## Deliverable
 
-1. Start with `intelligence/query` so the planner can classify the note investigation correctly.
-2. If the user wants broader issuer context, pull `companies/overview`.
-3. If the user wants market and hedge context around the same issuer, pull the security bundle.
+Lead with the disclosure that matters and its financial or operating implication. Then list the supporting note evidence, changes across periods where the filings support comparison, and unresolved questions. Every filing claim needs accession number, filing URL, and note, item, section, or page. Label all analytical judgments as interpretation.
 
-## Example
-
-Question: `What lease and revenue-recognition risks show up in CRM's latest 10-K?`
-
-Suggested sequence:
-- `POST /v1/intelligence/query` with `{"query":"Investigate the lease and revenue-recognition footnotes for CRM."}`
-- `GET /v1/companies/overview?ticker=CRM` for supporting issuer context
-
-## Guidelines
-
-- Name the note families explicitly: lease, tax, revenue recognition, debt covenant, segment note.
-- Keep a clear line between extracted note findings and your interpretation.
-- Return traceable evidence, not generic accounting commentary: for every note finding, cite the source **accession number, filing URL, and the section/item** from the response `provenance` (e.g. `0000320193-25-000123 — 10-K Item 8, Note 5`). If a claim cannot be tied to a filing, label it inference, not fact.
+The skill investigates disclosures; it does not infer accounting quality or fraud from a footnote alone.

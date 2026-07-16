@@ -13,6 +13,7 @@
     "GET /v1/factors/exposures",
     "GET /v1/factors/decomposition",
     "GET /v1/insiders",
+    "GET /v1/owners/13f",
     "GET /v1/owners/institutional/ticker",
     "POST /v1/intelligence/query",
     "GET /v1/dilution/score"

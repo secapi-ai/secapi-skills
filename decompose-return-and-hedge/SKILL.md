@@ -1,48 +1,29 @@
 ---
 name: decompose-return-and-hedge
-description: Explains a security return over a stated period with factor attribution, loadings, and hedge-candidate analysis. Use when the user needs to understand what drove a stock move or compare hedges by their expected exposure trade-offs.
+description: Attributes a security return over a stated window and evaluates hedge candidates as factor-exposure trade-offs. Use when the question is what moved, what the model explains, and what risks a hedge changes.
 ---
 
 # Decompose Return and Hedge
 
-## Quick Start
+Explain the return before discussing a hedge. Set the date window, report what the factor model explains, and keep issuer evidence separate from attribution output.
+
+## First Read
 
 ```bash
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/factors/decomposition?symbol=AAPL&lookback=6m" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/factors/decomposition?symbol=AAPL&lookback=6m" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## Endpoints
+`symbol` is required. The API also supports optional `factors`, `keys`, `category`, `window`, `lookback`, `response_mode`, and `include` controls.
 
-- `GET /v1/factors/decomposition?symbol=...`
-- `GET /v1/stocks/{ticker}/loadings`
-- `GET /v1/intelligence/security?ticker=...`
-- `POST /v1/intelligence/query`
+## Research Path
 
-## Process
+1. Run `GET /v1/factors/decomposition` for the stated symbol and window.
+2. Use `GET /v1/stocks/{ticker}/loadings` to inspect reported position loadings.
+3. Use `GET /v1/factors/exposures` or `GET /v1/factors/correlations` only when they clarify concentration or hedge overlap.
+4. Bring in filing or company context through the routes declared in `metadata.json`, and cite it independently from the attribution model.
 
-1. Start with factor decomposition for the requested lookback.
-2. Pull stock loadings when the user wants fit diagnostics or factor betas.
-3. Pull the security intelligence bundle for filing-specific risks and hedge candidates.
-4. Use `POST /v1/intelligence/query` when the user wants the fully composed allocator answer in one shot.
+## Deliverable
 
-## Example Query Payload
-
-```json
-{
-  "query": "Decompose AAPL's last 6M return into factors, macro drivers, filing-specific risks, then suggest hedges."
-}
-```
-
-## Output Format
-
-1. Main return drivers
-2. Important loadings and diagnostics
-3. Filing or macro overlays
-4. Hedge candidates with expected exposure delta
-
-## Guidelines
-
-- Name the lookback window explicitly.
-- Mention fit diagnostics when `rSquared` is weak.
-- Distinguish factor-driven moves from filing/news-specific moves.
+State the exact window, the model's explained and unexplained components, and any fit limitation returned by the route. Present hedge candidates as changes in exposures, concentration, and residual risk; do not call them recommendations or guarantees. Distinguish factor attribution from filing facts, news, and causal explanation.

@@ -1,51 +1,30 @@
 ---
 name: make-portfolio-factor-neutral
-description: Analyzes portfolio factor exposures, proposes a neutralization, and validates the adjustment with stress tests. Use when the user has portfolio weights and needs to reduce factor concentration or evaluate a portfolio hedge.
+description: Measures factor exposure in a weighted portfolio, proposes a neutralization, and tests it under stated scenarios. Use when the user needs to reduce concentration or understand the trade-offs of a portfolio hedge.
 ---
 
 # Make Portfolio Factor Neutral
 
-## Quick Start
+Measure the book before optimizing it. Require holdings with weights, state the country and lookback, then evaluate a proposed neutralization under explicit constraints and scenarios.
+
+## First Read
 
 ```bash
-curl -s "${SECAPI_BASE_URL:-https://api.secapi.ai}/v1/portfolio/analyze" \
+curl --fail --silent --show-error https://api.secapi.ai/v1/portfolio/analyze \
   -H "x-api-key: $SECAPI_API_KEY" \
   -H "content-type: application/json" \
   -d '{"country":"US","lookback":"6m","holdings":[{"symbol":"AAPL","weight":0.5},{"symbol":"MSFT","weight":0.5}]}'
 ```
 
-## Endpoints
+`holdings` is required; each holding has a `symbol` and `weight`. The portfolio routes also support country, lookback, category, and factor-key controls.
 
-- `POST /v1/portfolio/analyze`
-- `POST /v1/portfolio/optimize`
-- `POST /v1/portfolio/stress-test`
-- `GET /v1/model-portfolios/{portfolioId}/factor-view`
+## Research Path
 
-## Process
+1. Submit the actual or proposed book to `POST /v1/portfolio/analyze`.
+2. Use `POST /v1/portfolio/optimize` with the stated objective. `factor_neutral`, `min_drawdown`, and `regime_aware` are the published objective values.
+3. Test the resulting holdings with `POST /v1/portfolio/stress-test`. Name the historical, named, or custom scenario used.
+4. Use `GET /v1/model-portfolios/{portfolioId}/factor-view` only when a known model-portfolio identifier is in scope.
 
-1. Run `portfolio/analyze` to identify top absolute exposures.
-2. Run `portfolio/optimize` with `objective=factor_neutral`.
-3. Validate the proposed hedge basket with `portfolio/stress-test`.
-4. For canned examples or dashboards, use `model-portfolios/{portfolioId}/factor-view`.
+## Deliverable
 
-## Example
-
-Question: `Neutralize the factor exposures in my 50/50 AAPL/MSFT book.`
-
-Suggested sequence:
-- `POST /v1/portfolio/analyze` with the holdings to find the top absolute exposures
-- `POST /v1/portfolio/optimize` with `objective=factor_neutral`
-- `POST /v1/portfolio/stress-test` to validate the proposed hedge basket
-
-## Output Format
-
-1. Top exposures
-2. Suggested hedge basket
-3. Neutralization plan
-4. Stress-test caveats
-
-## Guidelines
-
-- Require weights that sum to a sensible portfolio.
-- Show the top 3-5 exposures first.
-- Explain whether the recommendation is pure neutralization or a regime-aware compromise.
+Show the largest exposures, the intended neutralization, changes to holdings, remaining concentration, and scenario results. State the weights, country, lookback, objective, and constraints. An optimized output is scenario analysis, not a trade instruction or a promise of neutrality.

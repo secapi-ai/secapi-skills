@@ -1,11 +1,13 @@
 ---
 name: run-regime-aware-screen
-description: Compares factor-rotation leaders and laggards in a country's current macro context. Use when the user needs country-specific factor-rotation research anchored to the current macro regime.
+description: Researches factor rotation in a stated country's macro regime. Use when the user needs dated leaders and laggards with regime context, not an individual-security recommendation.
 ---
 
-# Run Regime Aware Screen
+# Run Regime-Aware Screen
 
-## Quick Start
+Place factor rotation in its country and time context. Report the observed regime and screen output before interpreting either.
+
+## First Read
 
 ```bash
 curl --fail --silent --show-error https://api.secapi.ai/v1/strategies/factor-rotation \
@@ -14,27 +16,14 @@ curl --fail --silent --show-error https://api.secapi.ai/v1/strategies/factor-rot
   -d '{"country":"US","category":"style","window":"1m","lookback":"6m","limit":5}'
 ```
 
-## Endpoints
+The published request supports country, category, window, lookback, and limit. Use `GET /v1/macro/regimes` to add the country's returned regime context.
 
-- `POST /v1/strategies/factor-rotation`
-- `GET /v1/macro/regimes?country=...`
+## Research Path
 
-## Process
+1. Read `GET /v1/macro/regimes?country=US` for the country in scope; it also accepts optional lookback controls.
+2. Submit the factor-rotation request with the country, category, window, lookback, and limit you intend to report.
+3. Preserve returned dates, country, ranking, regime context, rationale, and disclosures when supplied.
 
-1. Read `macro/regimes` for the country when you need to record its current macro context.
-2. Post the country, category, window, lookback, and limit to `factor-rotation`.
-3. Use the response's leaders, laggards, regime, and `asOf` fields in the research summary.
+## Deliverable
 
-## Example
-
-Prompt: `For US style factors, return factor-rotation research with current macro-regime context.`
-
-Preferred sequence:
-- `GET /v1/macro/regimes?country=US`
-- `POST /v1/strategies/factor-rotation`
-
-## Guidelines
-
-- Report the returned country, `asOf`, regime fields, leaders, and laggards.
-- Preserve the response rationale and disclosures when present.
-- Treat the result as factor-rotation research, not an individual-security screen or investment recommendation.
+State the observation time, country, regime context, leaders, and laggards before offering interpretation. Explain the limits of the selected window and do not turn a ranking into a durable business thesis or investment recommendation. Rankings and regimes can change with the underlying data.

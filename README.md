@@ -1,65 +1,52 @@
 # SEC API Skills
 
-Install focused research workflows for an agent that can call [SEC API](https://secapi.ai). Choose one when you need a cited company memo, a filing-footnote investigation, an insider or 13F review, factor research, or a country macro brief.
+Focused research workflows for agents using [SEC API](https://secapi.ai). Choose the job you need, install that skill, and give the agent a bounded question with an evidence standard. These skills organize research; they do not make an investment decision or replace review of the underlying filing.
 
-Each skill tells the agent which SEC API reads to make, what to verify before writing, and what evidence to retain. It does not fetch data by itself or make an investment decision.
+## Start Here
 
-## Start With One Question
-
-Install a single workflow in the project where your agent runs:
+Install one skill in the project where your agent runs:
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill company-due-diligence
-```
-
-Give the agent access to an SEC API key through its runtime environment or secret store:
-
-```bash
 export SECAPI_API_KEY="your-api-key"
 ```
 
-Then give it a bounded assignment:
+Then give the agent a concrete assignment:
 
 ```text
-Prepare a due-diligence memo on NVDA. Separate filing facts from interpretation.
-For every filing-derived claim, include the accession number, filing URL, and item or page.
+Prepare a due-diligence memo on NVDA. State the reporting periods used.
+Separate disclosed facts from interpretation, and cite each filing claim with
+the accession number, filing URL, and relevant item, note, or page.
 ```
 
-The workflow resolves the issuer, gathers the relevant company, ownership, factor, and filing context, and records the reporting periods it uses. It should surface open questions when the evidence does not settle them.
+SEC API accepts the key in the `x-api-key` header. Keep it in your runtime environment or secret manager, never in a prompt, browser client, or checked-in file.
 
-## Find the Right Skill
+## Choose A Workflow
 
-| Skill | Ask your agent to | Example first request |
-| --- | --- | --- |
-| [Analyze Company in Context](./analyze-company-in-context/SKILL.md) | Build a compact issuer or security brief with only the relevant earnings, factor, and macro context. | `Give me an allocator context pack on NVDA.` |
-| [Company Due Diligence](./company-due-diligence/SKILL.md) | Produce a source-backed company memo across business mix, ownership, filings, and dilution. | `Run full due diligence on NVDA.` |
-| [Decompose Return and Hedge](./decompose-return-and-hedge/SKILL.md) | Explain a security return over a stated period and evaluate exposure-based hedge candidates. | `Decompose AAPL's last 6M return and identify hedge candidates.` |
-| [Investigate Filing Footnotes](./investigate-filing-footnotes/SKILL.md) | Review lease, tax, revenue-recognition, debt-covenant, or segment disclosures. | `Investigate CRM's latest lease and revenue-recognition notes.` |
-| [Make Portfolio Factor Neutral](./make-portfolio-factor-neutral/SKILL.md) | Analyze portfolio factor exposure, propose a neutralization, and stress-test it. | `Analyze and neutralize the factor exposures in my AAPL/MSFT portfolio.` |
-| [Run Regime-Aware Screen](./run-regime-aware-screen/SKILL.md) | Compare factor-rotation leaders and laggards in a country's current macro context. | `For US style factors, return factor-rotation research with current macro-regime context.` |
-| [Track Insiders and 13Fs](./track-insiders-and-13fs/SKILL.md) | Review Form 3/4/5 activity or compare a manager's reported 13F periods. | `Compare this manager's last two 13F periods: CIK 0001067983.` |
-| [Use Live Factor Dashboard](./use-live-factor-dashboard/SKILL.md) | Monitor intraday factor moves, position loadings, correlations, and model-portfolio context. | `What factors are moving now, and why is NVDA sensitive?` |
-| [Write Country Regime Report](./write-country-regime-report/SKILL.md) | Write a dated country-level macro and regime brief. | `Write an allocator-style macro report on Japan.` |
+| Skill                                                                     | Job                                                                            | First prompt                                                           |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [Analyze Company in Context](./analyze-company-in-context/SKILL.md)       | Build a concise issuer brief before committing to deeper work.                 | `Give me an allocator context pack on NVDA.`                           |
+| [Company Due Diligence](./company-due-diligence/SKILL.md)                 | Produce a filing-led company memo with business, ownership, and risk context.  | `Run due diligence on NVDA and show the evidence trail.`               |
+| [Decompose Return and Hedge](./decompose-return-and-hedge/SKILL.md)       | Attribute a security return and frame hedge candidates as exposure trade-offs. | `Decompose AAPL's last 6M return and assess hedge candidates.`         |
+| [Investigate Filing Footnotes](./investigate-filing-footnotes/SKILL.md)   | Investigate a precise accounting disclosure in the filing record.              | `Review CRM's latest lease and revenue-recognition notes.`             |
+| [Make Portfolio Factor Neutral](./make-portfolio-factor-neutral/SKILL.md) | Measure a weighted portfolio's factor exposure and test a neutralization.      | `Analyze this portfolio's factor exposures and test a neutralization.` |
+| [Run Regime-Aware Screen](./run-regime-aware-screen/SKILL.md)             | Research factor rotation against a dated country regime.                       | `Show US style-factor rotation in its current macro context.`          |
+| [Track Insiders and 13Fs](./track-insiders-and-13fs/SKILL.md)             | Review issuer insider filings or a manager's reported 13F history.             | `Compare the latest two reported 13Fs for CIK 0001067983.`             |
+| [Use Live Factor Dashboard](./use-live-factor-dashboard/SKILL.md)         | Monitor intraday factor moves and a position's reported loadings.              | `What factors are moving now, and why is NVDA sensitive?`              |
+| [Write Country Regime Report](./write-country-regime-report/SKILL.md)     | Write a dated country macro brief with observed data and release context.      | `Write an allocator-style macro brief on Japan.`                       |
 
-Every skill directory includes an `install.md` with its installation command, first API request, and example prompt.
+Each directory has an `install.md` with the command and first prompt.
 
-## Install and Check Access
+## Check Access
 
-The [Skills CLI](https://www.skills.sh/docs/cli) installs and manages skills for AI agents. When it detects a supported agent, it can install directly; otherwise it prompts when it needs an installation scope or agent target. Use `--global` for a user-level installation, and use `--all` only when you want the entire collection:
+Use the Skills CLI to inspect supported agents or install the whole collection:
 
 ```bash
-# One workflow for this project
-npx skills add secapi-ai/secapi-skills --skill investigate-filing-footnotes
-
-# All skills for your user-level configuration
-npx skills add secapi-ai/secapi-skills --global --all
-
-# Check CLI options and installed skills
 npx skills --help
-npx skills list
+npx skills add secapi-ai/secapi-skills --all
 ```
 
-Confirm that the agent runtime can make an authenticated API request before relying on a workflow:
+Check that your environment can authenticate before relying on a workflow:
 
 ```bash
 curl --fail --silent --show-error \
@@ -67,18 +54,16 @@ curl --fail --silent --show-error \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-That confirms the key, network egress, and one API response. Availability for a particular issuer, filing, derived dataset, market-data entitlement, or live surface depends on the route and account. Keep the key out of prompts, browser code, checked-in configuration, and support requests.
+A successful request establishes access to that route, not coverage for every issuer, filing, derived dataset, or market-data surface. For a failed request, retain the route, timestamp, HTTP status, error code, `Request-Id`, and `traceparent` when present; never include the key or private payload in a support report.
 
-## Keep the Evidence With the Answer
+## Evidence Standard
 
-For filing-backed claims, retain the response `provenance`: the accession number, filing URL, and relevant item, section, or page. State which observations are extracted from the filing and which are your interpretation. When returned, retain timestamps, freshness, degradation, rate-limit, and request-identification fields with the result.
+Treat filings, derived models, and live market observations as different kinds of evidence. For filing-backed claims, retain the accession number, filing URL, and exact item, note, section, or page. Name report dates, lookbacks, and response timestamps. Label interpretation, forecast, and model output as such, and state uncertainty where the returned source, freshness, or degradation fields do not settle a point.
 
-These are research workflows, not investment advice. A factor decomposition is an attribution model, a 13F reports a past filing period rather than a live position, and an intraday response can be stale or proxy-based. Read each workflow's required inputs, lookbacks, and caveats before automating an output or using it in a decision.
+These workflows support research, not investment advice. A 13F is a historical filing, a factor model is not causality, and intraday observations are not a closing-price record or execution signal.
 
 ## Reference
 
-- [SEC API documentation](https://docs.secapi.ai/api-reference) for API contracts and examples
-- [SEC API status](https://docs.secapi.ai/status) for public service checks and request diagnosis
-- [SEC API Skills issues](https://github.com/secapi-ai/secapi-skills/issues) for workflow feedback
-
-Each skill's `metadata.json` records its active status, supplemental discovery terms, and declared API dependencies. The public Skills CLI uses the `SKILL.md` frontmatter for skill discovery.
+- [SEC API reference](https://docs.secapi.ai/api-reference)
+- [SEC API status and request diagnosis](https://docs.secapi.ai/status)
+- [Skills CLI reference](https://www.skills.sh/docs/cli)

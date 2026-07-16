@@ -7,6 +7,8 @@
   "triggers": ["decompose return", "why did this stock move", "hedge this position", "return drivers", "stock return attribution", "hedge candidates"],
   "requiredEndpoints": [
     "GET /v1/factors/decomposition",
+    "GET /v1/factors/exposures",
+    "GET /v1/factors/correlations",
     "GET /v1/stocks/{ticker}/loadings",
     "GET /v1/intelligence/security",
     "POST /v1/intelligence/query"
