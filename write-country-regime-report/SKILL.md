@@ -1,49 +1,29 @@
 ---
 name: write-country-regime-report
-description: Writes a dated country macro report from official-source data, regime context, and release metadata. Use when the user needs a country macro brief or regime memo that separates observed data from forecasts and release timing.
+description: Writes a dated country macro brief from the high-signal pack, regime context, and report workflow. Use when the user needs observed data, release timing, and uncertainty separated from forecast.
 ---
 
 # Write Country Regime Report
 
-## Quick Start
+Write a country brief that can be revisited later: identify the country, observation date, lookback, and source boundary before synthesizing growth, inflation, labor, policy, and trade.
+
+## First Read
 
 ```bash
-curl -s "https://api.secapi.ai/v1/macro/high-signal-pack?country=JP" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/macro/high-signal-pack?country=JP" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## Endpoints
+The high-signal pack and `GET /v1/macro/regimes` accept a country; both also expose published `response_mode` and `include` controls.
 
-- `GET /v1/macro/high-signal-pack?country=...`
-- `GET /v1/macro/regimes?country=...`
-- `POST /v1/intelligence/country-report`
-- `POST /v1/intelligence/query`
+## Research Path
 
-## Process
+1. Read `GET /v1/macro/high-signal-pack` to establish the data and source context available for the country.
+2. Read `GET /v1/macro/regimes` with the country and, where relevant, a stated lookback.
+3. Use `POST /v1/intelligence/country-report` to assemble the report. Its published request supports `country`, `lookback`, `symbols`, `holdings`, `horizon`, and `briefingMode`.
+4. Keep observed releases, estimates, forecasts, and expected release timing in separate statements.
 
-1. Fetch the high-signal pack to understand source coverage and canonical series.
-2. Fetch the regime to anchor the report.
-3. Generate the country report for the requested lookback.
-4. Use `intelligence/query` only when the user wants a more narrative allocator memo.
+## Deliverable
 
-## Output Format
-
-1. Regime summary
-2. Growth, inflation, labor, policy, and trade drivers
-3. Releases and forecast context
-4. Risks and watch items
-
-## Example
-
-Question: `Write an allocator-style macro report on Japan.`
-
-Suggested sequence:
-- `GET /v1/macro/high-signal-pack?country=JP`
-- `GET /v1/macro/regimes?country=JP`
-- `POST /v1/intelligence/country-report` for the written report
-
-## Guidelines
-
-- Cite the country and lookback explicitly.
-- Prefer the official-source series listed in the high-signal pack.
-- Distinguish observed data from forecast or estimated release timing.
+Lead with the dated regime summary. Cover growth, inflation, labor, policy, trade, and watch items only where the returned evidence supports them. Name the country, lookback, horizon, and report timestamp. Prefer the source context supplied by the high-signal pack; label forecasts and release-date uncertainty. A country report is a dated research artifact, not a standing macro forecast.

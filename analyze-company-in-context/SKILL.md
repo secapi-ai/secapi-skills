@@ -1,56 +1,32 @@
 ---
 name: analyze-company-in-context
-description: Builds a compact company or security brief from company, earnings, factor, and macro context. Use when the user needs a fast company brief or allocator context pack before deciding whether to do deeper research.
+description: Builds a concise, evidence-aware issuer brief before deeper research. Use when the user needs the business, financial, factor, and macro context that could change an allocation decision.
 ---
 
 # Analyze Company in Context
 
-## Quick Start
+Build a short decision brief, not a diluted diligence memo. Establish the issuer and reporting period, then add only the business breakdown, factor exposure, or macro context that materially changes the question.
 
-Resolve the issuer and get the snapshot in one call with Company Overview, then pull deeper atomic routes only when needed.
+## First Read
 
 ```bash
-curl -s "https://api.secapi.ai/v1/companies/overview?ticker=MSFT&include=segments,dilution" \
+curl --fail --silent --show-error \
+  "https://api.secapi.ai/v1/companies/overview?ticker=MSFT&include=segments,dilution" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
-## Endpoints
+If the request starts with a name rather than a ticker or CIK, resolve it with `GET /v1/entities/resolve` before calling the issuer routes.
 
-- `GET /v1/companies/overview?ticker=...&include=segments,footnotes,dilution` — issuer identity, latest material filing, and a 5-year financial snapshot in one call
-- `GET /v1/companies/segments?ticker=...&segment_type=product|geographic|operating` — revenue / operating-income broken out by reportable segment and geography
-- `GET /v1/intelligence/security?ticker=...`
-- `GET /v1/intelligence/earnings-preview?ticker=...`
-- `GET /v1/factors/exposures?symbols=...`
-- `GET /v1/macro/regimes?country=...`
+## Research Path
 
-## Process
+1. Read `GET /v1/companies/overview` using `ticker` or `cik`. Its optional `include` values are `segments`, `footnotes`, `dilution`, and `factors`.
+2. Use `GET /v1/companies/segments` when product, geographic, or operating mix matters. It accepts `ticker` or `cik`, plus optional `period` and `segment_type`.
+3. Add `GET /v1/factors/exposures` only when factor sensitivity belongs in the decision.
+4. Use `GET /v1/macro/regimes` only when country regime context changes the interpretation.
+5. Use the intelligence routes named in `metadata.json` as supporting bundles, and keep their returned context distinct from filing evidence.
 
-1. Start with `companies/overview` (it accepts `ticker` or `cik`) and capture the canonical `cik`. If you only have a company name, resolve it first with `GET /v1/entities/resolve?name=...`. Add `?include=segments,dilution` for an inline summary.
-2. Pull `companies/segments` for the full multi-axis business breakdown when the question is about revenue mix, concentration, or geographic exposure.
-3. Use `companies/overview` for issuer context, and `intelligence/security` when the question is about trading, return drivers, or hedge candidates.
-4. Add `intelligence/earnings-preview` when the question is near a reporting window.
-5. Pull factor exposures and macro regimes only if they change the answer.
-6. Return a compact summary before showing supporting data.
+## Deliverable
 
-## Output Format
+Lead with the issuer, the decision-relevant facts, and the open question. Follow with business mix, financial or filing context, and only the factor or macro overlays that matter. Name the report date and lookback. For every filing claim, retain the accession number, filing URL, and item, note, section, or page; label your conclusion as interpretation.
 
-1. Company summary
-2. Key drivers and risks
-3. Macro and factor context
-4. Next-step questions or hedge ideas
-
-## Example
-
-Question: `Give me a fast context pack on NVDA for an allocator.`
-
-Suggested sequence:
-- `GET /v1/companies/overview?ticker=NVDA&include=segments,dilution`
-- `GET /v1/intelligence/security?ticker=NVDA`
-- `GET /v1/factors/exposures?symbols=NVDA`
-
-## Guidelines
-
-- Prefer Company Overview and the intelligence bundles over stitching many raw endpoints by default.
-- Use `view=full` only when the caller explicitly wants the full payload.
-- Keep the answer short unless the user asks for a deeper memo.
-- When you quote a number that comes from a filing, cite the source accession number and filing URL (preserved in the response `provenance`); keep extracted filing facts separate from your interpretation.
+Do not turn a compact brief into a price target, a hedge instruction, or a substitute for full diligence.

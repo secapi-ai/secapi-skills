@@ -1,28 +1,18 @@
 # Write Country Regime Report
 
-Use this for a country-specific macro brief grounded in the high-signal pack, regime state, and report workflow. It should connect observed data, release timing, forecasts, and watch items without blurring them together.
-
-## Install and Connect
+Install this to create a country macro brief with observed data and forecast boundaries made explicit.
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill write-country-regime-report
 export SECAPI_API_KEY="your-api-key"
 ```
 
-Add `--global` for a user-level install. Use `npx skills --help` to inspect supported agent integration options.
+First prompt:
 
-## Make the First Read
-
-```bash
-curl --fail --silent --show-error \
-  "https://api.secapi.ai/v1/macro/high-signal-pack?country=JP" \
-  -H "x-api-key: $SECAPI_API_KEY"
+```text
+Write an allocator-style report on Japan with a 6M horizon. State the country,
+lookback, horizon, and report date. Separate observed data, estimates, forecasts,
+and expected release timing, and preserve uncertainty where the source does not settle it.
 ```
 
-Then ask: `Write an allocator-style report on Japan. State the country and lookback, use the high-signal pack, and distinguish observed data from forecasts and estimated release timing.`
-
-## What Good Looks Like
-
-The report anchors the regime before explaining growth, inflation, labor, policy, and trade. It uses the official-source series identified by the high-signal pack where available and labels both forecast and release-date uncertainty. A country report is a dated research artifact, not a standing macro forecast.
-
-Read the [workflow](./SKILL.md) for the process and [metadata](./metadata.json) for triggers and declared endpoint dependencies.
+Read the [workflow](./SKILL.md) for the high-signal-pack and regime sequence.
