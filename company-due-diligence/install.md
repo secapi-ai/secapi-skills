@@ -1,6 +1,6 @@
 # Company Due Diligence
 
-Install this when you need a company memo that can be reviewed claim by claim.
+Use this skill when you need a company memo that another reader can review claim by claim.
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill company-due-diligence
@@ -15,4 +15,4 @@ facts, model output, and interpretation; cite every filing claim with accession
 number, filing URL, and item, note, section, or page.
 ```
 
-Follow the [workflow](./SKILL.md) for the evidence path and ownership boundaries.
+Read the [full instructions](./SKILL.md) for the research path and disclosure limits.

@@ -1,7 +1,7 @@
 {
   "name": "Analyze Company in Context",
-  "summary": "Build a compact issuer or security brief from company, earnings, factor, and macro context.",
-  "description": "Use when you need a fast company brief or allocator context pack before deciding whether to do deeper research.",
+  "summary": "Build a compact issuer brief from company, earnings, factor, and macro context.",
+  "description": "Use before deeper research when you need to identify the business, filing, factor, or macro facts that change the next question.",
   "status": "active",
   "tags": ["company", "security", "context", "factors", "macro"],
   "triggers": ["company analysis", "security overview", "allocator brief", "issuer context", "company bundle", "company brief", "investor context pack"],
