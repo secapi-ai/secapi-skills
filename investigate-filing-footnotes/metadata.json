@@ -1,7 +1,7 @@
 {
   "name": "Investigate Filing Footnotes",
-  "summary": "Investigate filing footnotes and accounting disclosures with source-linked findings.",
-  "description": "Use when an investment question concerns lease, tax, revenue-recognition, debt-covenant, or segment-note disclosures.",
+  "summary": "Investigate a filing footnote or accounting disclosure with source-linked findings.",
+  "description": "Use when a question concerns a lease, tax, revenue-recognition, debt-covenant, or segment-note disclosure and needs the underlying filing evidence.",
   "status": "active",
   "tags": ["footnotes", "filings", "accounting", "semantic-query", "risk"],
   "triggers": ["footnotes", "lease note", "tax footnote", "revenue recognition", "segment note", "debt covenant", "accounting risks", "filing note analysis"],

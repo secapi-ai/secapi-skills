@@ -1,7 +1,7 @@
 {
   "name": "Track Insiders And 13Fs",
-  "summary": "Analyze Form 3, 4, and 5 insider activity or compare a manager's reported 13F holdings across periods.",
-  "description": "Use when you need company insider activity or a manager's 13F changes, filing history, and style drift.",
+  "summary": "Analyze Form 3, 4, and 5 insider activity or compare a manager's reported 13F filings.",
+  "description": "Use when you need issuer insider activity or a manager's historical 13F changes and want to preserve the filing and report-date boundary.",
   "status": "active",
   "tags": ["insiders", "13f", "ownership", "institutional", "manager"],
   "triggers": ["insider buying", "insider selling", "13f changes", "style drift", "institutional holders", "insider transactions", "13F portfolio comparison"],

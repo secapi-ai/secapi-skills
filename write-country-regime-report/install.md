@@ -1,6 +1,6 @@
 # Write Country Regime Report
 
-Install this to create a country macro brief with observed data and forecast boundaries made explicit.
+Use this skill to create a country macro brief that separates observed data from forecasts.
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill write-country-regime-report
@@ -15,4 +15,4 @@ lookback, horizon, and report date. Separate observed data, estimates, forecasts
 and expected release timing, and preserve uncertainty where the source does not settle it.
 ```
 
-Read the [workflow](./SKILL.md) for the high-signal-pack and regime sequence.
+Read the [full instructions](./SKILL.md) for the high-signal-pack and regime sequence.

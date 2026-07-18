@@ -1,7 +1,7 @@
 {
   "name": "Decompose Return and Hedge",
-  "summary": "Explain a security return over a stated period with factor attribution, loadings, and hedge-candidate analysis.",
-  "description": "Use when you need to understand what drove a stock move or compare hedges by their expected exposure trade-offs.",
+  "summary": "Explain a security return over a stated period with factor attribution, loadings, and hedge trade-offs.",
+  "description": "Use when you need to separate a modeled return explanation from the exposure changes a potential hedge would introduce.",
   "status": "active",
   "tags": ["returns", "decomposition", "hedging", "factors", "security"],
   "triggers": ["decompose return", "why did this stock move", "hedge this position", "return drivers", "stock return attribution", "hedge candidates"],

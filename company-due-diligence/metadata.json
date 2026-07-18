@@ -1,7 +1,7 @@
 {
   "name": "Company Due Diligence",
-  "summary": "Produce a filing-cited company due-diligence memo covering business mix, ownership, factors, and dilution.",
-  "description": "Use for a company deep dive or pre-investment workup when the final memo needs traceable filing evidence.",
+  "summary": "Produce a filing-cited company memo covering business mix, ownership, factors, and dilution.",
+  "description": "Use for a company deep dive when the final memo needs traceable filing evidence and clear separation of facts, models, and interpretation.",
   "status": "active",
   "tags": ["due-diligence", "company", "ownership", "filings", "factors", "dilution", "provenance"],
   "triggers": ["due diligence", "deep dive", "company workup", "pre-investment pack", "full company analysis", "DD memo", "investment research memo", "company diligence"],

@@ -1,6 +1,6 @@
 # Investigate Filing Footnotes
 
-Install this when the question lives in a specific accounting disclosure rather than the headline financials.
+Use this skill when a question lives in a specific accounting disclosure rather than the headline financials.
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill investigate-filing-footnotes
@@ -15,4 +15,4 @@ For each finding, cite the accession number, filing URL, and note, item, section
 or page; keep disclosed facts separate from interpretation.
 ```
 
-The [workflow](./SKILL.md) describes the evidence threshold.
+The [full instructions](./SKILL.md) describe the evidence threshold and limits.

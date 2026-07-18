@@ -1,6 +1,6 @@
 # Make Portfolio Factor Neutral
 
-Install this when you have portfolio weights and need to see the trade-offs in reducing factor concentration.
+Use this skill when you have portfolio weights and need to see the trade-offs in reducing factor concentration.
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill make-portfolio-factor-neutral
@@ -15,4 +15,4 @@ propose a factor-neutral adjustment, and stress-test the resulting holdings.
 State the country, lookback, objective, and scenario.
 ```
 
-Read the [workflow](./SKILL.md) for the required holdings and scenario boundaries.
+Read the [full instructions](./SKILL.md) for required holdings and scenario limits.

@@ -1,6 +1,6 @@
 # Run Regime-Aware Screen
 
-Install this for factor-rotation research that records its macro and timing context.
+Use this skill for factor-rotation research that records its macro and timing context.
 
 ```bash
 npx skills add secapi-ai/secapi-skills --skill run-regime-aware-screen
@@ -15,4 +15,4 @@ a 1M window with a 6M lookback. State the observation time, country, regime,
 leaders, laggards, and any returned rationale or disclosures.
 ```
 
-Use the [workflow](./SKILL.md) to keep the screen distinct from an investment thesis.
+Use the [full instructions](./SKILL.md) to keep the screen distinct from an investment thesis.

@@ -1,7 +1,7 @@
 {
   "name": "Write Country Regime Report",
-  "summary": "Write a dated country macro report from official-source data, regime context, and release metadata.",
-  "description": "Use when you need a country macro brief or regime memo that separates observed data from forecasts and release timing.",
+  "summary": "Write a dated country macro report from source data, regime context, and release timing.",
+  "description": "Use when you need a country brief that distinguishes observed data, estimates, forecasts, and expected release timing.",
   "status": "active",
   "tags": ["macro", "country-report", "regime", "official-data"],
   "triggers": ["country report", "macro report", "japan economy", "china outlook", "macro regime report", "country outlook", "allocator macro brief"],

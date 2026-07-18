@@ -1,7 +1,7 @@
 {
   "name": "Run Regime Aware Screen",
-  "summary": "Compare factor-rotation leaders and laggards in a country's current macro context.",
-  "description": "Use when you need country-specific factor-rotation research anchored to the current macro regime.",
+  "summary": "Compare factor-rotation leaders and laggards with dated country-regime context.",
+  "description": "Use when you need country-specific factor-rotation research that records its observation window, macro regime, and ranking boundary.",
   "status": "active",
   "tags": ["macro", "regime", "rotation", "factors"],
   "triggers": ["factor rotation", "macro regime", "factor leaders", "factor laggards", "country factor research", "style factor rotation"],

@@ -1,15 +1,14 @@
 {
   "name": "Make Portfolio Factor Neutral",
-  "summary": "Analyze portfolio factor exposures, propose a neutralization, and validate the adjustment with stress tests.",
-  "description": "Use when you have portfolio weights and need to reduce factor concentration or evaluate a portfolio hedge.",
+  "summary": "Analyze portfolio factor exposures, test a constrained adjustment, and compare stress scenarios.",
+  "description": "Use when you have portfolio weights and need to measure factor concentration or evaluate the trade-offs of a proposed hedge.",
   "status": "active",
   "tags": ["portfolio", "hedge", "optimization", "factor-neutral", "stress-test"],
   "triggers": ["factor neutral", "hedge my portfolio", "portfolio exposures", "portfolio optimization", "reduce factor concentration", "portfolio hedge"],
   "requiredEndpoints": [
     "POST /v1/portfolio/analyze",
     "POST /v1/portfolio/optimize",
-    "POST /v1/portfolio/stress-test",
-    "GET /v1/model-portfolios/{portfolioId}/factor-view"
+    "POST /v1/portfolio/stress-test"
   ],
   "tier": "core",
   "schemaVersion": 1
