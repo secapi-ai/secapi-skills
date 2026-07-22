@@ -1,6 +1,6 @@
 # SEC API Skills
 
-Give an agent a disciplined way to research SEC filings, ownership disclosures, factor exposure, and macro context with [SEC API](https://secapi.ai). Each skill defines a specific research job, the evidence to retain, and the limits the agent should state before it draws a conclusion.
+[SEC API](https://secapi.ai) gives agents access to SEC filings, ownership disclosures, factor exposure, and macro context. These skills turn that access into focused research tasks with an explicit evidence standard and stated limits.
 
 The shortest path is to install one skill, provide an API key to the agent runtime, and ask a concrete question. Skills help structure research. They are not investment advice and do not replace reading the cited filing.
 
@@ -69,6 +69,6 @@ These skills support research, not investment advice. A 13F is a historical fili
 - [SEC API reference](https://docs.secapi.ai/api-reference)
 - [Getting started](https://docs.secapi.ai/getting-started)
 - [Pricing](https://secapi.ai/pricing)
-- [SEC API status and request diagnosis](https://docs.secapi.ai/status)
+- [SEC API status](https://status.secapi.ai)
 - [Support](https://secapi.ai/support)
 - [Skills CLI reference](https://www.skills.sh/docs/cli)
