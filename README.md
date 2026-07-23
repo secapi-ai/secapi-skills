@@ -1,8 +1,8 @@
 # SEC API Skills
 
-[SEC API](https://secapi.ai) gives agents access to SEC filings, ownership disclosures, factor exposure, and macro context. These skills turn that access into focused research tasks with an explicit evidence standard and stated limits.
+[SEC API](https://secapi.ai) gives agents access to SEC filings, ownership disclosures, factor exposure, and macro context. These skills turn that access into bounded research assignments with an explicit evidence standard, dated sources, and stated limits.
 
-The shortest path is to install one skill, provide an API key to the agent runtime, and ask a concrete question. Skills help structure research. They are not investment advice and do not replace reading the cited filing.
+Install the skill that matches the job, provide an API key to the agent runtime, and ask a concrete question. Skills structure research; they are not investment advice and do not replace reading the cited filing.
 
 ## Install a skill
 
