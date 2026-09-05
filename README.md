@@ -1,6 +1,6 @@
 # SEC API Skills
 
-[SEC API](https://secapi.ai) gives agents access to SEC filings, ownership disclosures, factor exposure, and macro context. These skills turn that access into bounded research assignments with an explicit evidence standard, dated sources, and stated limits.
+[SEC API](https://www.turos.app/developers/) by [Turos](https://www.turos.app) gives agents access to SEC filings, ownership disclosures, factor exposure, and macro context. These skills turn that access into bounded research assignments with an explicit evidence standard, dated sources, and stated limits.
 
 Install the skill that matches the job, provide an API key to the agent runtime, and ask a concrete question. Skills structure research; they are not investment advice and do not replace reading the cited filing.
 
@@ -52,7 +52,7 @@ Before relying on a skill, make one authenticated request from the same environm
 
 ```bash
 curl --fail --silent --show-error \
-  "https://api.secapi.ai/v1/companies/overview?ticker=AAPL" \
+  "https://api.turos.app/v1/companies/overview?ticker=AAPL" \
   -H "x-api-key: $SECAPI_API_KEY"
 ```
 
@@ -66,9 +66,9 @@ These skills support research, not investment advice. A 13F is a historical fili
 
 ## Reference
 
-- [SEC API reference](https://docs.secapi.ai/api-reference)
-- [Getting started](https://docs.secapi.ai/getting-started)
-- [Pricing](https://secapi.ai/pricing)
-- [SEC API status](https://status.secapi.ai)
-- [Support](https://secapi.ai/support)
+- [SEC API reference](https://www.turos.app/docs/api-reference)
+- [Getting started](https://www.turos.app/docs/account-setup)
+- [Pricing](https://www.turos.app/pricing/)
+- [SEC API status](https://status.turos.app)
+- [Support](https://www.turos.app/docs/admin/support)
 - [Skills CLI reference](https://www.skills.sh/docs/cli)
